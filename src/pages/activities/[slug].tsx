@@ -1,9 +1,10 @@
 import React from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { sanityClient, urlFor } from '@/lib/sanity';
-import { ActivityDisplay } from '@/types/activity';
+import { ActivityDisplay, BlockContent, BlockContentChild } from '@/types/activity';
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface ActivityDetailsProps {
   activity: ActivityDisplay;
@@ -39,9 +40,11 @@ export default function ActivityDetails({ activity }: ActivityDetailsProps) {
           
           {activity.imageUrl && (
             <div className="mb-8">
-              <img 
+              <Image 
                 src={activity.imageUrl} 
                 alt={activity.title} 
+                width={800}
+                height={600}
                 className="w-full h-auto rounded-lg"
               />
             </div>
@@ -108,6 +111,21 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       notFound: true
     };
   }
+
+  // Function to extract text from BlockContent
+  const extractText = (blockContent: BlockContent): string => {
+    if (!blockContent || !Array.isArray(blockContent)) return '';
+    
+    return blockContent
+      .filter(block => block._type === 'block')
+      .map(block => 
+        block.children
+          ?.filter((child: BlockContentChild) => child._type === 'span')
+          .map((span: BlockContentChild) => span.text || '')
+          .join('')
+      )
+      .join(' ') || '';
+  };
   
   // Transform to ActivityDisplay format
   const activityDisplay: ActivityDisplay = {
@@ -117,9 +135,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     type: activity.type,
     description: typeof activity.description === 'string' 
       ? activity.description 
-      : activity.description?.map((block: any) => 
-          block?.children?.map((child: any) => child?.text).join('')
-        ).join(' ') || '',
+      : extractText(activity.description),
     mainImage: activity.mainImage,
     imageUrl: activity.mainImage ? urlFor(activity.mainImage).width(800).url() : '',
     tags: activity.tags || [],

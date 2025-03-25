@@ -1,12 +1,26 @@
 // Simplified Sanity image type
-export type SanityImageSource = Record<string, any>;
+export type SanityImageSource = Record<string, unknown>;
 
-// Simplified block content type
-export type BlockContent = {
+// Block content child type
+export interface BlockContentChild {
   _type: string;
   _key: string;
-  [key: string]: any;
-}[];
+  text?: string;
+  marks?: string[];
+  [key: string]: unknown;
+}
+
+// Block content block type
+export interface BlockContentBlock {
+  _type: string;
+  _key: string;
+  style?: string;
+  children?: BlockContentChild[];
+  [key: string]: unknown;
+}
+
+// Simplified block content type
+export type BlockContent = BlockContentBlock[];
 
 export interface Activity {
   _id: string;

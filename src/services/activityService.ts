@@ -1,5 +1,5 @@
 import { sanityClient, urlFor } from '@/lib/sanity';
-import { Activity, ActivityDisplay, BlockContent } from '@/types/activity';
+import { Activity, ActivityDisplay, BlockContent, BlockContentChild } from '@/types/activity';
 
 /**
  * Extract text from BlockContent for simple display
@@ -11,8 +11,8 @@ function extractTextFromBlockContent(blockContent: BlockContent): string {
   const firstBlock = blockContent.find(block => block._type === 'block');
   if (firstBlock && firstBlock.children) {
     return firstBlock.children
-      .filter((child: any) => child._type === 'span')
-      .map((span: any) => span.text)
+      .filter((child: BlockContentChild) => child._type === 'span')
+      .map((span: BlockContentChild) => span.text || '')
       .join('');
   }
   
@@ -38,25 +38,25 @@ export async function getActivities(): Promise<ActivityDisplay[]> {
 
   try {
     // Fetch activities from Sanity
-    const activities = await sanityClient.fetch<any[]>(query);
+    const activities = await sanityClient.fetch<Record<string, unknown>[]>(query);
 
     // Transform activities to match the display format
-    return activities.map((activity: any) => ({
-      _id: activity._id,
-      title: activity.title,
-      slug: activity.slug || '',
-      type: activity.type,
+    return activities.map((activity: Record<string, unknown>) => ({
+      _id: activity._id as string,
+      title: activity.title as string,
+      slug: (activity.slug as string) || '',
+      type: activity.type as string,
       // Convert BlockContent to string if needed
       description: typeof activity.description === 'string' 
         ? activity.description 
-        : extractTextFromBlockContent(activity.description),
-      mainImage: activity.mainImage,
+        : extractTextFromBlockContent(activity.description as BlockContent),
+      mainImage: activity.mainImage as Record<string, unknown>,
       // Generate image URL if available
-      imageUrl: activity.mainImage ? urlFor(activity.mainImage).width(600).url() : '',
-      tags: activity.tags || [],
-      startDateTime: activity.startDateTime,
+      imageUrl: activity.mainImage ? urlFor(activity.mainImage as Record<string, unknown>).width(600).url() : '',
+      tags: (activity.tags as string[]) || [],
+      startDateTime: activity.startDateTime as string,
       // Add categories in the format expected by the carousel
-      categories: [activity.type.toUpperCase().replace('_', ' ')]
+      categories: [(activity.type as string).toUpperCase().replace('_', ' ')]
     }));
   } catch (error) {
     console.error('Error fetching activities:', error);

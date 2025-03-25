@@ -13,6 +13,8 @@ const ActivitiesSection: React.FC<ActivitiesCarouselProps> = ({ activities }) =>
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
+    const currentRef = sectionRef.current;
+    
     const observer = new IntersectionObserver(
       ([entry]) => {
         setIsVisible(entry.isIntersecting);
@@ -20,13 +22,13 @@ const ActivitiesSection: React.FC<ActivitiesCarouselProps> = ({ activities }) =>
       { threshold: 0.2 }
     );
     
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
+    if (currentRef) {
+      observer.observe(currentRef);
     }
     
     return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
+      if (currentRef) {
+        observer.unobserve(currentRef);
       }
     };
   }, []);
