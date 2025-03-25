@@ -1,8 +1,14 @@
 'use client';
 
 import React, { useRef, useEffect, useState } from 'react';
+import ActivitiesCarousel from "@/components/ActivitiesCarousel";
+import { ActivityDisplay } from '@/types/activity';
 
-const ServicesList: React.FC = () => {
+interface ActivitiesCarouselProps {
+  activities: ActivityDisplay[];
+}
+
+const ActivitiesSection: React.FC<ActivitiesCarouselProps> = ({ activities }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -29,22 +35,24 @@ const ServicesList: React.FC = () => {
     <div 
       ref={sectionRef}
       className={`transition-colors duration-700 py-16 md:py-24 text-white ${
-        isVisible ? 'bg-seth-coral' : 'bg-gray-500'
+        isVisible ? 'bg-seth-coral' : 'bg-seth-coral/30'
       }`}
     >
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="md:max-w-3xl">
           <p className="text-3xl md:text-4xl lg:text-5xl leading-tight font-medium">
-            Verbal identities, naming, brand narratives, impact statements, culture and values, tone of voice, website language, product launch, marketing campaigns.
+            Want to know what we're up to?
           </p>
 
-          <p className="text-3xl md:text-4xl lg:text-5xl leading-tight font-medium mt-8 font-bold">
-            Anything that's core to your brand.
+          <p className="text-xl md:text-2xl lg:text-3xl leading-snug font-medium mt-6">
+            Check out our activities.
           </p>
         </div>
       </div>
+      <ActivitiesCarousel activities={activities} />
+
     </div>
   );
 };
 
-export default ServicesList;
+export default ActivitiesSection;

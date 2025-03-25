@@ -1,40 +1,44 @@
 'use client';
 
-import React, { useRef, useEffect, useState } from 'react';
+import React from 'react';
+import { useScrollColorEffect } from '../hooks/useScrollColorEffect';
+
+const titleText = "Get Real with AI.";
+
+const descriptionText = "Hands-on workshops. Cool projects. Expert mentors. Join us and level up your AI skills.";
 
 const SpecializationSection: React.FC = () => {
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsVisible(entry.isIntersecting);
-      },
-      { threshold: 0.5 }
-    );
-    
-    if (titleRef.current) {
-      observer.observe(titleRef.current);
-    }
-    
-    return () => {
-      if (titleRef.current) {
-        observer.unobserve(titleRef.current);
-      }
-    };
-  }, []);
+  const { containerRef, progressIndex, words } = useScrollColorEffect({ text: titleText });
+  const { containerRef: descRef, progressIndex: descProgressIndex, words: descWords } = useScrollColorEffect({ text: descriptionText });
 
   return (
-    <div className="bg-cream text-seth-coral py-12 md:py-16 w-full">
-      <div className="container mx-auto px-6 max-w-full">
+    <div className="bg-cream text-seth-coral py-16 md:py-24 w-[80%] mx-auto" >
+      <div className="container mx-auto px-8 max-w-full">
         <div className="w-full">
-          <h2 
-            ref={titleRef}
-            className={`seth-heading mb-8 transition-colors duration-500 ${isVisible ? 'text-seth-coral' : 'text-gray-400'}`}
-          >
-            I specialise in brand language — partnering with founders, company teams and other creatives to build new brands and evolve existing ones.
+          <h2 className="seth-heading mb-8 transition-colors duration-500 " ref={containerRef}>
+            {words.map((word: string, index: number) => (
+              <span
+                key={index}
+                className={`inline-block transition-colors duration-500 mr-2 ${
+                  index <= progressIndex ? "text-seth-coral" : "text-seth-coral/30"
+                }`}
+              >
+                {word}{index < words.length - 1 ? " " : ""}
+              </span>
+            ))}
           </h2>
+          <h3 className="seth-heading-2 mb-8" ref={descRef}>
+            {descWords.map((word: string, index: number) => (
+              <span
+                key={index}
+                className={`inline-block transition-colors duration-500 mr-2 ${
+                  index <= descProgressIndex ? "text-seth-coral" : "text-seth-coral/30"
+                }`}
+              >
+                {word}{index < descWords.length - 1 ? " " : ""}
+              </span>
+            ))}
+          </h3>
         </div>
       </div>
     </div>

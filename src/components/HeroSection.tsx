@@ -7,8 +7,8 @@ const HeroSection: React.FC = () => {
       <div className="container mx-auto px-5 md:px-8 max-w-full">
         <h1 className="seth-heading text-seth-coral mb-8 w-full">
           We're UdeM AI,<br/>
-          a community of AI enthusiasts <br/>
-          @ the University of Montreal.
+          club of AI builders <br/>
+          @ University of Montreal.
         </h1>
 
         <div className="mt-12">
