@@ -2,9 +2,7 @@ import React from 'react';
 import Navbar from '@/components/Navbar';
 import HeroSection from '@/components/HeroSection';
 import ActivitiesSection from '@/components/ActivitiesSection';
-import ExperienceSection from '@/components/ExperienceSection';
 import SpecializationSection from '@/components/SpecializationSection';
-import ActivitiesCarousel from '@/components/ActivitiesCarousel';
 import JoinUsSection from '@/components/JoinUsSection';
 import ContactSection from '@/components/ContactSection';
 
