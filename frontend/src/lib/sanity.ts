@@ -5,8 +5,9 @@ import { SanityImageSource } from '@/types/activity';
 export const sanityClient = createClient({
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || 'production',
-  apiVersion: '2023-05-03', // Use a version you prefer
+  apiVersion: '2025-03-26', // Use a version you prefer
   useCdn: process.env.NODE_ENV === 'production',
+  token: process.env.NEXT_PRIVATE_SANITY_API_TOKEN,
 });
 
 // Helper function to build image URLs
