@@ -22,6 +22,13 @@ export interface BlockContentBlock {
 // Simplified block content type
 export type BlockContent = BlockContentBlock[];
 
+export interface Location {
+  type: 'in_person' | 'online' | 'hybrid';
+  venue?: string;
+  address?: string;
+  meetingLink?: string;
+}
+
 export interface Activity {
   _id: string;
   title: string;
@@ -31,13 +38,15 @@ export interface Activity {
   type: 'workshop' | 'hackathon' | 'study_group' | 'project_meeting' | 'social' | 'competition' | 'other';
   description?: BlockContent;
   mainImage?: SanityImageSource;
-  tags?: string[];
+  gallery?: SanityImageSource[];
   schedule: {
     startDateTime: string;
     endDateTime?: string;
     isRecurring?: boolean;
     recurrencePattern?: 'weekly' | 'biweekly' | 'monthly';
   };
+  location?: Location;
+  status?: 'planned' | 'open' | 'full' | 'in_progress' | 'completed' | 'cancelled';
 }
 
 // Simplified version for display purposes
@@ -52,4 +61,6 @@ export interface ActivityDisplay {
   tags?: string[];
   startDateTime: string;
   categories: string[]; // For compatibility with the existing component
+  status?: string;
+  location?: Location;
 } 

@@ -1,5 +1,5 @@
 import { sanityClient, urlFor } from '@/lib/sanity';
-import { Activity, ActivityDisplay, BlockContent, BlockContentChild } from '@/types/activity';
+import { Activity, ActivityDisplay, BlockContent, BlockContentChild, Location } from '@/types/activity';
 
 /**
  * Extract text from BlockContent for simple display
@@ -32,8 +32,9 @@ export async function getActivities(): Promise<ActivityDisplay[]> {
     type,
     description,
     mainImage,
-    tags,
-    "startDateTime": schedule.startDateTime
+    "startDateTime": schedule.startDateTime,
+    location,
+    status,
   }`;
 
   try {
@@ -53,13 +54,29 @@ export async function getActivities(): Promise<ActivityDisplay[]> {
       mainImage: activity.mainImage as Record<string, unknown>,
       // Generate image URL if available
       imageUrl: activity.mainImage ? urlFor(activity.mainImage as Record<string, unknown>).width(600).url() : '',
-      tags: (activity.tags as string[]) || [],
       startDateTime: activity.startDateTime as string,
       // Add categories in the format expected by the carousel
-      categories: [(activity.type as string).toUpperCase().replace('_', ' ')]
+      categories: [(activity.type as string).toUpperCase().replace('_', ' ')],
+      status: activity.status as string || 'planned',
+      location: activity.location as Location
     }));
   } catch (error) {
     console.error('Error fetching activities:', error);
     return [];
+  }
+}
+
+/**
+ * Fetches a single activity by slug
+ */
+export async function getActivityBySlug(slug: string): Promise<Activity | null> {
+  const query = `*[_type == "activity" && slug.current == $slug][0]`;
+
+  try {
+    const activity = await sanityClient.fetch<Activity | null>(query, { slug });
+    return activity;
+  } catch (error) {
+    console.error(`Error fetching activity with slug "${slug}":`, error);
+    return null;
   }
 } 

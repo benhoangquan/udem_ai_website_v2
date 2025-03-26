@@ -15,6 +15,14 @@ export interface ResourceContent {
   };
 }
 
+export interface RelatedResource {
+  _id: string;
+  title: string;
+  slug: string;
+  category?: string;
+  difficulty?: string;
+}
+
 export interface Resource {
   _id: string;
   title: string;
@@ -31,13 +39,7 @@ export interface Resource {
     name: string;
     image?: SanityImageSource;
   }[];
-  relatedResources?: {
-    _id: string;
-    title: string;
-    slug: {
-      current: string;
-    };
-  }[];
+  relatedResources?: RelatedResource[];
   publishedAt?: string;
   updatedAt?: string;
   featured?: boolean;

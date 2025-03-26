@@ -28,13 +28,18 @@ export async function getResources(): Promise<ResourceDisplay[]> {
     _id,
     title,
     "slug": slug.current,
-    category,
     description,
+    "category": category->title,
+    content,
     difficulty,
-    tags,
     publishedAt,
-    updatedAt,
-    featured
+    "relatedResources": relatedResources[]-> {
+      _id,
+      title,
+      "slug": slug.current,
+      "category": category->title,
+      difficulty
+    }
   }`;
 
   try {
@@ -61,15 +66,47 @@ export async function getResources(): Promise<ResourceDisplay[]> {
 }
 
 /**
- * Fetches all resource categories from Sanity CMS
+ * Fetches a single resource by slug
  */
-export async function getResourceCategories(): Promise<string[]> {
-  const query = `*[_type == "resource"] {
-    category
+export async function getResourceBySlug(slug: string): Promise<Resource | null> {
+  const query = `*[_type == "resource" && slug.current == $slug][0] {
+    _id,
+    title,
+    "slug": slug.current,
+    description,
+    "category": category->title,
+    content,
+    difficulty,
+    publishedAt,
+    "relatedResources": relatedResources[]-> {
+      _id,
+      title,
+      "slug": slug.current,
+      "category": category->title,
+      difficulty
+    }
   }`;
 
   try {
-    return await sanityClient.fetch<string[]>(query);
+    const resource = await sanityClient.fetch<Resource | null>(query, { slug });
+    return resource;
+  } catch (error) {
+    console.error(`Error fetching resource with slug "${slug}":`, error);
+    return null;
+  }
+}
+
+/**
+ * Fetches all resource categories from Sanity CMS
+ */
+export async function getResourceCategories(): Promise<string[]> {
+  const query = `*[_type == "category"] {
+    title
+  }`;
+
+  try {
+    const categories = await sanityClient.fetch<{title: string}[]>(query);
+    return categories.map(cat => cat.title);
   } catch (error) {
     console.error('Error fetching resource categories:', error);
     return [];
