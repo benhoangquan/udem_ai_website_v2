@@ -13,11 +13,14 @@ const fallbackProjects: ActivityDisplay[] = [
     title: 'Intro to Machine Learning Workshop',
     slug: 'ml-workshop-1',
     description: 'Hands-on beginner workshop exploring supervised learning basics.',
-    imageUrl: 'https://images.unsplash.com/photo-1559028012-dae1b1ee2496?auto=format&fit=crop&w=600&q=80',
-    categories: ['WORKSHOP'],
-    tags: ['Supervised Learning', 'Scikit-learn', 'Hands-on', 'Beginner'],
+    mainImageUrl: 'https://images.unsplash.com/photo-1559028012-dae1b1ee2496?auto=format&fit=crop&w=600&q=80',
+    type: 'workshop',
+    categories: ['Supervised Learning', 'Scikit-learn', 'Hands-on', 'Beginner'],
     startDateTime: new Date().toISOString(),
-    type: 'workshop'
+    location: {
+      type: 'in_person',  
+      address: '123 Main St, Anytown, USA',
+    },
   },
   // ... more fallback items if needed
 ];
@@ -141,7 +144,7 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({ activities }) =
               <div className="bg-white rounded-lg overflow-hidden project-card w-full h-full mx-auto">
                 <div className="aspect-square relative">
                   <Image
-                    src={project.imageUrl || '/placeholder-image.jpg'}
+                    src={project.mainImageUrl || '/placeholder-image.jpg'}
                     alt={project.title}
                     width={500}
                     height={500}
@@ -159,21 +162,18 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({ activities }) =
                   </div>
                   <div className="">
                     <div className="flex flex-wrap gap-1 mb-2">
-                      {project.tags && project.tags.map((tag, idx) => (
+                      {project.categories && project.categories.map((category, idx) => (
                         <span key={idx} className="text-xs text-dark-gray/70">
-                          {tag}{idx < (project.tags?.length || 0) - 1 ? ',' : ''}
+                          {category}{idx < (project.categories?.length || 0) - 1 ? ',' : ''}
                         </span>
                       ))}
                     </div>
                     <div className="mt-4">
-                      {project.categories && project.categories.map((category, idx) => (
-                        <span
-                          key={idx}
-                          className="inline-block bg-seth-coral text-white px-4 py-1 rounded-full text-sm mr-2"
-                        >
-                          {category}
+                      {project.type && (
+                        <span className="inline-block bg-seth-coral text-white px-4 py-1 rounded-full text-sm mr-2">
+                          {project.type}
                         </span>
-                      ))}
+                      )}
                     </div>
                   </div>
                 </div>

@@ -100,7 +100,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     type,
     description,
     mainImage,
-    tags,
+    categories,
     "startDateTime": schedule.startDateTime
   }`;
   
@@ -137,8 +137,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       ? activity.description 
       : extractText(activity.description),
     mainImage: activity.mainImage,
-    imageUrl: activity.mainImage ? urlFor(activity.mainImage).width(800).url() : '',
-    tags: activity.tags || [],
+    mainImageUrl: activity.mainImage ? urlFor(activity.mainImage).width(800).url() : '',
     startDateTime: activity.startDateTime,
     categories: [activity.type.toUpperCase().replace('_', ' ')]
   };

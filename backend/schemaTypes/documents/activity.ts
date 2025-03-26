@@ -41,6 +41,12 @@ export default {
         type: 'blockContent',
       },
       {
+        name: 'categories',
+        title: 'Categories',
+        type: 'array',
+        of: [{ type: 'string' }],
+      },
+      {
         name: 'mainImage',
         title: 'Main Image',
         type: 'image',

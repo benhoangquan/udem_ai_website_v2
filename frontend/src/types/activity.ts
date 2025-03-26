@@ -57,8 +57,9 @@ export interface ActivityDisplay {
   type: string;
   description?: string; // Simplified to string for frontend display
   mainImage?: SanityImageSource;
-  imageUrl?: string; // Processed URL for the image
-  tags?: string[];
+  mainImageUrl?: string; // Processed URL for the image
+  gallery?: SanityImageSource[];
+  galleryImageUrls?: string[]; // Processed URL for the image
   startDateTime: string;
   categories: string[]; // For compatibility with the existing component
   status?: string;

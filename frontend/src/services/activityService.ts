@@ -1,5 +1,6 @@
 import { sanityClient, urlFor } from '@/lib/sanity';
-import { Activity, ActivityDisplay, BlockContent, BlockContentChild, Location } from '@/types/activity';
+import { Activity, ActivityDisplay, BlockContent, BlockContentChild, Location, SanityImageSource } from '@/types/activity';
+import image from 'next/image';
 
 /**
  * Extract text from BlockContent for simple display
@@ -31,7 +32,9 @@ export async function getActivities(): Promise<ActivityDisplay[]> {
     "slug": slug.current,
     type,
     description,
+    categories,
     mainImage,
+    gallery,
     "startDateTime": schedule.startDateTime,
     location,
     status,
@@ -51,9 +54,17 @@ export async function getActivities(): Promise<ActivityDisplay[]> {
       description: typeof activity.description === 'string' 
         ? activity.description 
         : extractTextFromBlockContent(activity.description as BlockContent),
+
+        // Generate image URL if available
       mainImage: activity.mainImage as Record<string, unknown>,
-      // Generate image URL if available
-      imageUrl: activity.mainImage ? urlFor(activity.mainImage as Record<string, unknown>).width(600).url() : '',
+      mainImageUrl: activity.mainImage ? urlFor(activity.mainImage as Record<string, unknown>).width(600).url() : '',
+
+      // Generate image URLs if available
+      gallery: activity.gallery as SanityImageSource[],
+      galleryImageUrls: Array.isArray(activity.gallery) 
+        ? activity.gallery.map((image: Record<string, unknown>) => urlFor(image).width(600).url())
+        : [],
+
       startDateTime: activity.startDateTime as string,
       // Add categories in the format expected by the carousel
       categories: [(activity.type as string).toUpperCase().replace('_', ' ')],
