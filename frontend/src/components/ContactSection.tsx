@@ -12,7 +12,7 @@ const ContactSection: React.FC = () => {
             {/* Social Media Icons */}
             <div className="flex gap-6 mb-12">
               <Link 
-                href="https://www.instagram.com/" 
+                href="https://www.instagram.com/udem.ai/" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white hover:text-seth-coral/20 transition-colors"
@@ -21,7 +21,7 @@ const ContactSection: React.FC = () => {
                 <span className="sr-only">Instagram</span>
               </Link>
               <Link 
-                href="https://www.linkedin.com/" 
+                href="https://www.linkedin.com/company/udem-ai" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white hover:text-seth-coral/20 transition-colors"
@@ -30,7 +30,7 @@ const ContactSection: React.FC = () => {
                 <span className="sr-only">LinkedIn</span>
               </Link>
               <Link 
-                href="https://discord.gg/udemai" 
+                href="https://discord.gg/2Ttnw8p2Hy" 
                 target="_blank" 
                 rel="noopener noreferrer"
                 className="text-white hover:text-seth-coral/20 transition-colors"

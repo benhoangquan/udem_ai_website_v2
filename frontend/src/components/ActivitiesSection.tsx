@@ -42,11 +42,11 @@ const ActivitiesSection: React.FC<ActivitiesCarouselProps> = ({ activities }) =>
     >
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="md:max-w-3xl">
-          <p className="text-3xl md:text-4xl lg:text-5xl leading-tight font-medium">
+          <p className="seth-heading leading-tight font-medium">
             Want to know what we're up to?
           </p>
 
-          <p className="text-xl md:text-2xl lg:text-3xl leading-snug font-medium mt-6">
+          <p className="seth-heading-2 leading-snug font-medium mt-6">
             Check out our activities.
           </p>
         </div>

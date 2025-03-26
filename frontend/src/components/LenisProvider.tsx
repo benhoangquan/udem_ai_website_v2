@@ -6,7 +6,7 @@ import Lenis from "lenis";
 export default function LenisProvider() {
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.75,        // Animation duration (lower = faster, higher = slower/heavier)
+      duration: 2,        // Animation duration (lower = faster, higher = slower/heavier)
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Default easing
       orientation: 'vertical',
       gestureOrientation: 'vertical',

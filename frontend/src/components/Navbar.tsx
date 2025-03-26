@@ -102,7 +102,7 @@ const Navbar: React.FC = () => {
             IG
           </a>
           <a 
-            href="https://discord.gg/udemai" 
+            href="https://discord.gg/2Ttnw8p2Hy" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-white hover:opacity-80 transition-opacity text-sm md:text-base"
