@@ -15,15 +15,6 @@ const TeamCarousel: React.FC<TeamCarouselProps> = ({ members }) => {
   const [showAvatar, setShowAvatar] = useState(true);
   const [autoplay, setAutoplay] = useState(false);
 
-  // If no members found
-  if (members.length === 0) {
-    return (
-      <div className="flex items-center justify-center h-screen">
-        <p className="text-white text-2xl">No team members found.</p>
-      </div>
-    );
-  }
-
   // Alternate between seth-coral and cream colors based on index
   const isCoral = currentIndex % 2 === 0;
   const bgColor = isCoral ? 'bg-seth-coral' : 'bg-cream';
@@ -89,6 +80,16 @@ const TeamCarousel: React.FC<TeamCarouselProps> = ({ members }) => {
 
     return () => clearInterval(interval);
   }, [autoplay, goToNextMember, members.length]);
+
+
+  // If no members found
+  if (members.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <p className="text-white text-2xl">No team members found.</p>
+      </div>
+    );
+  }
 
   return (
     <div 
