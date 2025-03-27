@@ -8,7 +8,13 @@ export interface Member {
   executivePosition?: string;
   avatar?: SanityImageSource;
   bio?: string;
-  linkedin?: string;
+  socialLinks?: {
+    linkedin?: string;
+    twitter?: string;
+    github?: string;
+    instagram?: string;
+    discord?: string;
+  };
 }
 
 // Simplified version for display purposes
@@ -19,5 +25,11 @@ export interface MemberDisplay {
   executivePosition?: string;
   avatar?: string; // URL
   bio?: string;
-  linkedin?: string;
+  socialLinks?: {
+    linkedin?: string;
+    twitter?: string;
+    github?: string;
+    instagram?: string;
+    discord?: string;
+  };
 } 

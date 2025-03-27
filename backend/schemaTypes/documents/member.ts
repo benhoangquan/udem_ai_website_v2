@@ -26,6 +26,6 @@ export default {
       },
       { name: 'avatar', title: 'Avatar', type: 'image', options: { hotspot: true } },
       { name: 'bio', title: 'Biography', type: 'text' },
-      { name: 'linkedin', title: 'LinkedIn URL', type: 'url' },
+      { name: 'socialLinks', title: 'Social Links', type: 'socialLinks' },
     ],
   }

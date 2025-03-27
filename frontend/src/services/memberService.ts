@@ -11,7 +11,13 @@ interface SanityMember {
   executivePosition?: string;
   avatar?: SanityImageSource;
   bio?: string;
-  linkedin?: string;
+  socialLinks?: {
+    linkedin?: string;
+    twitter?: string;
+    github?: string;
+    instagram?: string;
+    discord?: string;
+  };
 }
 
 /**
@@ -26,7 +32,7 @@ export async function getMembers(): Promise<MemberDisplay[]> {
     executivePosition,
     avatar,
     bio,
-    linkedin
+    socialLinks
   }`;
 
   try {
@@ -37,9 +43,9 @@ export async function getMembers(): Promise<MemberDisplay[]> {
       name: member.name,
       role: member.role,
       executivePosition: member.executivePosition,
-      avatar: member.avatar ? urlFor(member.avatar).width(300).height(300).url() : undefined,
+      avatar: member.avatar ? urlFor(member.avatar).width(300).height(300).url() : "",
       bio: member.bio,
-      linkedin: member.linkedin,
+      socialLinks: member.socialLinks,
     }));
   } catch (error) {
     console.error('Error fetching members:', error);
@@ -59,7 +65,7 @@ export async function getExecutiveMembers(): Promise<MemberDisplay[]> {
     executivePosition,
     avatar,
     bio,
-    linkedin
+    socialLinks
   }`;
 
   try {
@@ -70,9 +76,9 @@ export async function getExecutiveMembers(): Promise<MemberDisplay[]> {
       name: executive.name,
       role: executive.role,
       executivePosition: executive.executivePosition,
-      avatar: executive.avatar ? urlFor(executive.avatar).width(300).height(300).url() : undefined,
+      avatar: executive.avatar ? urlFor(executive.avatar).width(300).height(300).url() : "",
       bio: executive.bio,
-      linkedin: executive.linkedin,
+      socialLinks: executive.socialLinks,
     }));
   } catch (error) {
     console.error('Error fetching executive members:', error);
