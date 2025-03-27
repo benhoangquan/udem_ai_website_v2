@@ -1,10 +1,10 @@
 import React from 'react';
-import Navbar from '@/components/Navbar';
-import HeroSection from '@/components/HeroSection';
-import ActivitiesSection from '@/components/ActivitiesSection';
-import SpecializationSection from '@/components/SpecializationSection';
-import JoinUsSection from '@/components/JoinUsSection';
-import ContactSection from '@/components/ContactSection';
+import Navbar from '@/components/ui/Navbar';
+import HeroSection from '@/components/main_section/HeroSection';
+import ActivitiesSection from '@/components/main_section/ActivitiesSection';
+import SpecializationSection from '@/components/main_section/SpecializationSection';
+import JoinUsSection from '@/components/main_section/JoinUsSection';
+import ContactSection from '@/components/main_section/ContactSection';
 
 import { getActivities } from '@/services/activityService';
 import { ActivityDisplay } from '@/types/activity';
@@ -15,7 +15,9 @@ export default function Home({ activities }: { activities: ActivityDisplay[] }) 
       <Navbar />
       <HeroSection />
       <SpecializationSection />
-      <ActivitiesSection activities={activities} />
+      <div id="activities">
+        <ActivitiesSection activities={activities}/>
+      </div>
       <JoinUsSection />
       <ContactSection />
     </main>

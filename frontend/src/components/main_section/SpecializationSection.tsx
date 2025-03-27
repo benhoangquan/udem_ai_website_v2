@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useScrollColorEffect } from '../hooks/useScrollColorEffect';
+import { useScrollColorEffect } from '@/hooks/useScrollColorEffect';
 
 const titleText = "Get Real with AI.";
 
@@ -12,7 +12,7 @@ const SpecializationSection: React.FC = () => {
   const { containerRef: descRef, progressIndex: descProgressIndex, words: descWords } = useScrollColorEffect({ text: descriptionText });
 
   return (
-    <div className="bg-cream text-seth-coral py-16 md:py-24 w-[80%] mx-auto" >
+    <div className="bg-cream text-seth-coral py-16 md:py-16 w-[80%] mx-auto" >
       <div className="container mx-auto px-8 max-w-full">
         <div className="w-full">
           <h2 className="seth-heading mb-8 transition-colors duration-500 " ref={containerRef}>

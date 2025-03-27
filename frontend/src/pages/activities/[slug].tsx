@@ -2,7 +2,7 @@ import React from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { sanityClient, urlFor } from '@/lib/sanity';
 import { ActivityDisplay, BlockContent, BlockContentChild } from '@/types/activity';
-import Navbar from '@/components/Navbar';
+import Navbar from '@/components/ui/Navbar';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -38,10 +38,10 @@ export default function ActivityDetails({ activity }: ActivityDetailsProps) {
             ))}
           </div>
           
-          {activity.imageUrl && (
+          {activity.mainImageUrl && (
             <div className="mb-8">
               <Image 
-                src={activity.imageUrl} 
+                src={activity.mainImageUrl} 
                 alt={activity.title} 
                 width={800}
                 height={600}

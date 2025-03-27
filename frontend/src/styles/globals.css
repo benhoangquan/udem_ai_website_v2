@@ -1,0 +1,22 @@
+/* Add this to account for fixed navbar when scrolling to sections */
+html {
+  scroll-behavior: smooth;
+}
+
+#activities {
+  scroll-margin-top: 80px; /* Adjust based on your navbar height */
+}
+
+/* Typing cursor animation */
+.typing-cursor {
+  display: inline-block;
+  width: 3px;
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+  opacity: 1;
+}
+
+@keyframes blink {
+  from, to { opacity: 1; }
+  50% { opacity: 0; }
+} 

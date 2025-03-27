@@ -31,7 +31,10 @@ export default function ActivityCalendar({ activities, onDateSelect }: ActivityC
   const modifiersStyles = {
     hasActivity: {
       fontWeight: 'bold',
-      backgroundColor: '#FF4D42',
+      backgroundColor: '#FF4D42/30',
+      border: '2px solid #FF4D42',
+
+
       borderRadius: '100%'
     }
   };
@@ -51,8 +54,7 @@ export default function ActivityCalendar({ activities, onDateSelect }: ActivityC
         onSelect={handleSelect}
         modifiers={modifiers}
         modifiersStyles={modifiersStyles}
-        footer={<div className="text-center text-sm text-gray-500">Select a date to view activities</div>}
-        className=""
+        className="border-none flex justify-center text-seth-coral"
       />
     </div>
   );

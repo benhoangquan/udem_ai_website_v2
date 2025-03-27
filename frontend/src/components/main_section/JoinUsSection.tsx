@@ -2,7 +2,8 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useScrollColorEffect } from '../hooks/useScrollColorEffect';
+import { useScrollColorEffect } from '../../hooks/useScrollColorEffect';
+import TypeWriter from '../ui/TypeWriter';
 
 const titleText = "Let's create something incredible together.";
 
@@ -25,9 +26,12 @@ const JoinUsSection: React.FC = () => {
           ))}
         </h2>
 
-        <p className="seth-heading-2 text-seth-coral/50 mb-16">
-          Three ways to join us.
-        </p>
+        <TypeWriter 
+          text="Three ways to join us."
+          className="seth-heading-2 text-seth-coral/50 mb-16"
+          tag="p"
+          speed={60}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-center">
           {/* Executive Member Card */}

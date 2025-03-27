@@ -98,18 +98,16 @@ body {
   font-weight: 800;
 }
 
-/* Testimonial styling */
-.testimonial {
-  position: relative;
+.seth-heading-3 {
+  font-size: clamp(1.5rem, 7vw, 3rem); /* ⬅️ increased all values */
+  line-height: 1.1;
+  font-weight: 800;
 }
 
-.testimonial::before {
-  content: '"';
-  position: absolute;
-  top: -20px;
-  left: -10px;
-  font-size: 4rem;
-  opacity: 0.3;
+.seth-heading-4 {
+  font-size: clamp(1rem, 7vw, 2rem); /* ⬅️ increased all values */
+  line-height: 1.1;
+  font-weight: 800;
 }
 
 /* Navigation dots for carousel */

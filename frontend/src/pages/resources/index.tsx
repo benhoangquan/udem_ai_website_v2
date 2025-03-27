@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { GetStaticProps } from 'next';
-import Navbar from '@/components/Navbar';
-import ResourceCard from '@/components/ResourceCard';
-import ResourceSkeleton from '@/components/ResourceSkeleton';
+import Navbar from '@/components/ui/Navbar';
+import ResourceCard from '@/components/resources/ResourceCard';
+import ResourceSkeleton from '@/components/resources/ResourceSkeleton';
 import { ResourceDisplay } from '@/types/resource';
 import { getResources, getResourceCategories } from '@/services/resourceService';
 import { useDebounce } from '@/hooks/useDebounce';

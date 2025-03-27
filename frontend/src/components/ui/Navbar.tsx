@@ -62,7 +62,7 @@ const Navbar: React.FC = () => {
             Meet the Team
           </Link>
           <Link 
-            href="/activities" 
+            href="/#activities" 
             className="seth-heading text-white text-3xl md:text-4xl lg:text-5xl font-bold hover:opacity-80 transition-opacity"
             onClick={toggleMenu}
           >
