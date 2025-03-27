@@ -20,6 +20,28 @@ function extractTextFromBlockContent(blockContent: BlockContent): string {
   return '';
 }
 
+// Define the type for the resource data returned from Sanity
+interface SanityResource {
+  _id: string;
+  title: string;
+  slug: string;
+  description?: string | BlockContent;
+  category?: string;
+  content?: BlockContent;
+  difficulty?: string;
+  tags?: string[];
+  publishedAt: string;
+  updatedAt?: string;
+  featured?: boolean;
+  relatedResources?: {
+    _id: string;
+    title: string;
+    slug: string;
+    category?: string;
+    difficulty?: string;
+  }[];
+}
+
 /**
  * Fetches all resources from Sanity CMS
  */
@@ -32,7 +54,10 @@ export async function getResources(): Promise<ResourceDisplay[]> {
     "category": category->title,
     content,
     difficulty,
+    tags,
     publishedAt,
+    updatedAt,
+    featured,
     "relatedResources": relatedResources[]-> {
       _id,
       title,
@@ -43,21 +68,21 @@ export async function getResources(): Promise<ResourceDisplay[]> {
   }`;
 
   try {
-    const resources = await sanityClient.fetch<Record<string, any>[]>(query);
+    const resources = await sanityClient.fetch<SanityResource[]>(query);
 
-    return resources.map((resource: Record<string, any>) => ({
-      _id: resource._id as string,
-      title: resource.title as string,
-      slug: resource.slug as string,
-      category: resource.category || null,
+    return resources.map((resource) => ({
+      _id: resource._id,
+      title: resource.title,
+      slug: resource.slug,
+      category: resource.category || '',
       description: typeof resource.description === 'string'
         ? resource.description
         : extractTextFromBlockContent(resource.description as BlockContent),
-      difficulty: resource.difficulty as string,
-      tags: resource.tags as string[] || [],
-      publishedAt: resource.publishedAt as string,
-      updatedAt: resource.updatedAt as string,
-      featured: resource.featured as boolean || false
+      difficulty: resource.difficulty,
+      tags: resource.tags || [],
+      publishedAt: resource.publishedAt,
+      updatedAt: resource.updatedAt,
+      featured: resource.featured || false
     }));
   } catch (error) {
     console.error('Error fetching resources:', error);
@@ -77,7 +102,10 @@ export async function getResourceBySlug(slug: string): Promise<Resource | null> 
     "category": category->title,
     content,
     difficulty,
+    tags,
     publishedAt,
+    updatedAt,
+    featured,
     "relatedResources": relatedResources[]-> {
       _id,
       title,
@@ -106,7 +134,8 @@ export async function getResourceCategories(): Promise<string[]> {
 
   try {
     const categories = await sanityClient.fetch<{title: string}[]>(query);
-    return categories.map(cat => cat.title);
+    const uniqueCategories = [...new Set(categories.map(cat => cat.title))];
+    return uniqueCategories;
   } catch (error) {
     console.error('Error fetching resource categories:', error);
     return [];

@@ -3,12 +3,12 @@ import React from 'react';
 const ResourceSkeleton: React.FC = () => {
   return (
     <div className="bg-cream/50 rounded-lg p-6 h-full flex flex-col animate-pulse">
-      <div className="h-4 w-1/4 bg-gray-200 rounded mb-3"></div>
+      <div className="h-4 w-1/4 bg-gray-200 rounded-full mb-3 self-start"></div>
       <div className="h-6 w-3/4 bg-gray-200 rounded mb-4"></div>
       
       <div className="flex items-center gap-3 mb-4">
         <div className="h-4 w-20 bg-gray-200 rounded"></div>
-        <div className="h-4 w-16 bg-gray-200 rounded"></div>
+        <div className="h-4 w-16 bg-gray-200 rounded-full"></div>
       </div>
       
       <div className="space-y-2 mb-4 flex-grow">

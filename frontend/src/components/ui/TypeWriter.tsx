@@ -31,13 +31,16 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
       { threshold: 0.2 } // Trigger when 20% of the element is visible
     );
 
-    if (elementRef.current) {
-      observer.observe(elementRef.current);
+    // Store ref value in a variable inside the effect
+    const currentElement = elementRef.current;
+
+    if (currentElement) {
+      observer.observe(currentElement);
     }
 
     return () => {
-      if (elementRef.current) {
-        observer.unobserve(elementRef.current);
+      if (currentElement) {
+        observer.unobserve(currentElement);
       }
     };
   }, [hasTyped]);
@@ -46,7 +49,6 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
     if (!isVisible) return;
 
     let currentIndex = 0;
-    let timeout: NodeJS.Timeout;
 
     // Initial delay before starting typing
     const startTyping = setTimeout(() => {

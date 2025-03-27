@@ -105,16 +105,15 @@ export default function ResourcesPage({ resources, categories }: ResourcesPagePr
         {/* Category Filters */}
         <div className="flex flex-wrap gap-2 mb-10">
           <button
-            key={"succurro"}
-            onClick={() => {}}
+            onClick={() => setSelectedCategories([])}
             className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-              selectedCategories.includes("")
+              selectedCategories.length === 0
                 ? 'bg-seth-coral text-white'
                 : 'bg-white text-gray-700 hover:bg-gray-100'
             }`}
-            aria-pressed={selectedCategories.includes("")}
+            aria-pressed={selectedCategories.length === 0}
           >
-            1
+            All
           </button>
 
           {categories.map((category) => (

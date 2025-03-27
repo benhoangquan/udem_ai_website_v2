@@ -1,6 +1,6 @@
 import { sanityClient, urlFor } from '@/lib/sanity';
 import { Blog, BlogDisplay } from '@/types/blog';
-import { BlockContent } from '@/types/activity';
+import { BlockContent, SanityImageSource } from '@/types/activity';
 
 /**
  * Extract text from BlockContent for simple display
@@ -18,6 +18,22 @@ function extractTextFromBlockContent(blockContent: BlockContent): string {
   }
   
   return '';
+}
+
+// Define the type for the blog data returned from Sanity
+interface SanityBlogPost {
+  _id: string;
+  title: string;
+  slug: string;
+  author?: {
+    _id: string;
+    name: string;
+    avatar?: SanityImageSource;
+  };
+  mainImage?: SanityImageSource;
+  categories: string[];
+  publishedAt: string;
+  body?: BlockContent;
 }
 
 /**
@@ -40,21 +56,21 @@ export async function getBlogPosts(): Promise<BlogDisplay[]> {
   }`;
 
   try {
-    const posts = await sanityClient.fetch<Record<string, any>[]>(query);
+    const posts = await sanityClient.fetch<SanityBlogPost[]>(query);
 
-    return posts.map((post: Record<string, any>) => ({
-      _id: post._id as string,
-      title: post.title as string,
-      slug: post.slug as string,
+    return posts.map((post) => ({
+      _id: post._id,
+      title: post.title,
+      slug: post.slug,
       author: {
         _id: post.author?._id || '',
         name: post.author?.name || 'Unknown Author',
         avatar: post.author?.avatar ? urlFor(post.author.avatar).width(50).height(50).url() : undefined,
       },
       mainImage: post.mainImage ? urlFor(post.mainImage).width(800).url() : undefined,
-      categories: post.categories as string[] || [],
-      publishedAt: post.publishedAt as string,
-      body: post.body ? extractTextFromBlockContent(post.body as BlockContent).substring(0, 150) + '...' : '',
+      categories: post.categories || [],
+      publishedAt: post.publishedAt,
+      body: post.body ? extractTextFromBlockContent(post.body).substring(0, 150) + '...' : '',
     }));
   } catch (error) {
     console.error('Error fetching blog posts:', error);

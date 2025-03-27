@@ -36,9 +36,15 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
         <h3 className="text-xl font-bold mb-2">{resource.title}</h3>
         
         <div className="flex items-center gap-3 mb-4">
-          <span className="text-sm font-medium text-seth-coral">
-            {resource.category}
-          </span>
+          {resource.category ? (
+            <span className="text-sm font-medium text-seth-coral">
+              {resource.category}
+            </span>
+          ) : (
+            <span className="text-sm font-medium text-gray-400">
+              Uncategorized
+            </span>
+          )}
           
           {resource.difficulty && (
             <span className={`text-xs px-2 py-1 rounded-full ${getDifficultyColor(resource.difficulty)}`}>

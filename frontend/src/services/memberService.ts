@@ -1,5 +1,18 @@
 import { sanityClient, urlFor } from '@/lib/sanity';
 import { Member, MemberDisplay } from '@/types/member';
+import { SanityImageSource } from '@/types/activity';
+
+// Define the type for the member data returned from Sanity
+interface SanityMember {
+  _id: string;
+  name: string;
+  email?: string;
+  role: string;
+  executivePosition?: string;
+  avatar?: SanityImageSource;
+  bio?: string;
+  linkedin?: string;
+}
 
 /**
  * Fetches all members from Sanity CMS
@@ -17,16 +30,16 @@ export async function getMembers(): Promise<MemberDisplay[]> {
   }`;
 
   try {
-    const members = await sanityClient.fetch<Record<string, any>[]>(query);
+    const members = await sanityClient.fetch<SanityMember[]>(query);
 
-    return members.map((member: Record<string, any>) => ({
-      _id: member._id as string,
-      name: member.name as string,
-      role: member.role as string,
-      executivePosition: member.executivePosition as string,
+    return members.map((member) => ({
+      _id: member._id,
+      name: member.name,
+      role: member.role,
+      executivePosition: member.executivePosition,
       avatar: member.avatar ? urlFor(member.avatar).width(300).height(300).url() : undefined,
-      bio: member.bio as string,
-      linkedin: member.linkedin as string,
+      bio: member.bio,
+      linkedin: member.linkedin,
     }));
   } catch (error) {
     console.error('Error fetching members:', error);
@@ -50,16 +63,16 @@ export async function getExecutiveMembers(): Promise<MemberDisplay[]> {
   }`;
 
   try {
-    const executives = await sanityClient.fetch<Record<string, any>[]>(query);
+    const executives = await sanityClient.fetch<SanityMember[]>(query);
 
-    return executives.map((executive: Record<string, any>) => ({
-      _id: executive._id as string,
-      name: executive.name as string,
-      role: executive.role as string,
-      executivePosition: executive.executivePosition as string,
+    return executives.map((executive) => ({
+      _id: executive._id,
+      name: executive.name,
+      role: executive.role,
+      executivePosition: executive.executivePosition,
       avatar: executive.avatar ? urlFor(executive.avatar).width(300).height(300).url() : undefined,
-      bio: executive.bio as string,
-      linkedin: executive.linkedin as string,
+      bio: executive.bio,
+      linkedin: executive.linkedin,
     }));
   } catch (error) {
     console.error('Error fetching executive members:', error);
