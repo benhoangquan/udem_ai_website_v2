@@ -9,6 +9,7 @@ import { useDebounce } from '@/hooks/useDebounce';
 import { Search } from 'lucide-react';
 import { useResourceFilters } from '@/hooks/useResourceFilters';
 import { useLoadingDelay } from '@/hooks/useLoadingDelay';
+import SearchBar from '@/components/common/SearchBar';
 
 interface ResourcesPageProps {
   resources: ResourceDisplay[];
@@ -49,17 +50,7 @@ export default function ResourcesPage({ resources, categories }: ResourcesPagePr
         <div className="flex flex-col md:flex-row gap-4 md:items-center justify-between mb-8">
           {/* Search Bar */}
           <div className="w-full md:w-1/2">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search resources..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full p-3 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-seth-coral"
-                aria-label="Search resources"
-              />
-            <Search className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
-            </div>
+            <SearchBar value={searchQuery} onChange={setSearchQuery} placeholder="Search resources..." />
           </div>
           
           {/* Filter Status */}
