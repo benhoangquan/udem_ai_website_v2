@@ -1,6 +1,6 @@
 import React from 'react';
-import Link from 'next/link';
 import { ResourceDisplay } from '@/types/resource';
+import Link from 'next/link';
 
 interface ResourceCardProps {
   resource: ResourceDisplay;
@@ -22,32 +22,31 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
   };
 
   return (
-    <Link href={`/resources/${resource.slug}`}>
+    <Link 
+      href={resource.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="block"
+    >
       <div 
-        className="bg-cream rounded-lg p-6 h-full flex flex-col transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer"
+        className="bg-white rounded-lg shadow-lg p-6 h-full flex flex-col transition-all duration-300 hover:shadow-lg hover:-translate-y-1 cursor-pointer"
         aria-label={`Resource: ${resource.title}`}
-      >
-        {resource.featured && (
-          <div className="bg-seth-coral text-white text-xs uppercase font-semibold tracking-wider py-1 px-2 rounded-full inline-block mb-3 self-start">
-            Featured
-          </div>
-        )}
-        
+      > 
         <h3 className="text-xl font-bold mb-2">{resource.title}</h3>
         
         <div className="flex items-center gap-3 mb-4">
           {resource.category ? (
-            <span className="text-sm font-medium text-seth-coral">
+            <span className="text-sm font-medium rounded-full bg-seth-coral text-white px-2 py-1">
               {resource.category}
             </span>
           ) : (
-            <span className="text-sm font-medium text-gray-400">
+            <span className="text-sm font-medium rounded-full bg-gray-400 text-white px-2 py-1">
               Uncategorized
             </span>
           )}
           
           {resource.difficulty && (
-            <span className={`text-xs px-2 py-1 rounded-full ${getDifficultyColor(resource.difficulty)}`}>
+            <span className={`text-sm px-2 py-1 rounded-full ${getDifficultyColor(resource.difficulty)}`}>
               {resource.difficulty}
             </span>
           )}
@@ -61,7 +60,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
           </p>
         )}
         
-        {resource.tags && resource.tags.length > 0 && (
+        {/* {resource.tags && resource.tags.length > 0 && (
           <div className="flex flex-wrap gap-2 mt-auto">
             {resource.tags.slice(0, 3).map((tag, index) => (
               <span 
@@ -75,7 +74,7 @@ const ResourceCard: React.FC<ResourceCardProps> = ({ resource }) => {
               <span className="text-gray-500 text-xs">+{resource.tags.length - 3} more</span>
             )}
           </div>
-        )}
+        )} */}
       </div>
     </Link>
   );

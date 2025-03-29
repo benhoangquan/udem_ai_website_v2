@@ -27,7 +27,19 @@ interface SanityResource {
   slug: string;
   description?: string | BlockContent;
   category?: string;
-  content?: BlockContent;
+  content?: Array<{
+    type: 'document' | 'video' | 'code' | 'link' | 'file';
+    title?: string;
+    description?: string;
+    url?: string;
+    file?: {
+      asset: {
+        _ref: string;
+        _type: string;
+      };
+      url: string;
+    };
+  }>;
   difficulty?: string;
   tags?: string[];
   publishedAt: string;
@@ -70,20 +82,27 @@ export async function getResources(): Promise<ResourceDisplay[]> {
   try {
     const resources = await sanityClient.fetch<SanityResource[]>(query);
 
-    return resources.map((resource) => ({
-      _id: resource._id,
-      title: resource.title,
-      slug: resource.slug,
-      category: resource.category || '',
-      description: typeof resource.description === 'string'
-        ? resource.description
-        : extractTextFromBlockContent(resource.description as BlockContent),
-      difficulty: resource.difficulty,
-      tags: resource.tags || [],
-      publishedAt: resource.publishedAt,
-      updatedAt: resource.updatedAt,
-      featured: resource.featured || false
-    }));
+    return resources.map((resource) => {
+      // Extract URL from content array
+      const url = resource.content?.find(item => item.type === 'link')?.url || 
+                 resource.content?.find(item => item.type === 'file')?.file?.url || '';
+
+      return {
+        _id: resource._id,
+        title: resource.title,
+        slug: resource.slug,
+        category: resource.category || '',
+        description: typeof resource.description === 'string'
+          ? resource.description
+          : extractTextFromBlockContent(resource.description as BlockContent),
+        difficulty: resource.difficulty,
+        tags: resource.tags || [],
+        publishedAt: resource.publishedAt,
+        updatedAt: resource.updatedAt,
+        featured: resource.featured || false,
+        url
+      };
+    });
   } catch (error) {
     console.error('Error fetching resources:', error);
     return [];

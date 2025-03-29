@@ -15,7 +15,7 @@ export default defineConfig({
   plugins: [structureTool(), visionTool(), 
     presentationTool({
     previewUrl: {
-      origin: 'https://udemai.ca',
+      origin: 'https://udem-ai-website-v2.vercel.app/',
     },
   }),],
 

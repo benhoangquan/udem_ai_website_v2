@@ -27,10 +27,7 @@ export default function ResourcesPage({ resources, categories }: ResourcesPagePr
       const matchesSearch = 
         debouncedSearchQuery === '' ||
         resource.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase()) ||
-        (resource.description && resource.description.toLowerCase().includes(debouncedSearchQuery.toLowerCase())) ||
-        (resource.tags && resource.tags.some(tag => 
-          tag.toLowerCase().includes(debouncedSearchQuery.toLowerCase())
-        ));
+        (resource.description && resource.description.toLowerCase().includes(debouncedSearchQuery.toLowerCase()));
         
       // Filter by selected categories
       const matchesCategory = 

@@ -76,7 +76,8 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
     <div ref={elementRef}>
       <Component className={className}>
         {displayText}
-        <span className="typing-cursor">|</span>
+        {!hasTyped && <span className="typing-cursor">|</span>}
+        {/* <span className="typing-cursor">|</span> */}
       </Component>
     </div>
   );

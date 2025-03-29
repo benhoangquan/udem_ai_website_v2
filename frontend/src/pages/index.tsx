@@ -1,10 +1,10 @@
 import React from 'react';
 import Navbar from '@/components/ui/Navbar';
-import HeroSection from '@/components/main_section/HeroSection';
-import ActivitiesSection from '@/components/main_section/ActivitiesSection';
-import SpecializationSection from '@/components/main_section/SpecializationSection';
-import JoinUsSection from '@/components/main_section/JoinUsSection';
-import ContactSection from '@/components/main_section/ContactSection';
+import HeroSection from '@/components/main/HeroSection';
+import ActivitiesSection from '@/components/main/ActivitiesSection';
+import SpecializationSection from '@/components/main/SpecializationSection';
+import JoinUsSection from '@/components/main/JoinUsSection';
+import ContactSection from '@/components/main/ContactSection';
 
 import { getActivities } from '@/services/activityService';
 import { ActivityDisplay } from '@/types/activity';
