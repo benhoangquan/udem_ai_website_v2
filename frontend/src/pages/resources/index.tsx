@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React from 'react';
 import { GetStaticProps } from 'next';
 import Navbar from '@/components/common/Navbar';
 import ResourceCard from '@/components/resources/ResourceCard';
@@ -7,6 +7,8 @@ import { ResourceDisplay } from '@/types/resource';
 import { getResources, getResourceCategories } from '@/services/resourceService';
 import { useDebounce } from '@/hooks/useDebounce';
 import { Search } from 'lucide-react';
+import { useResourceFilters } from '@/hooks/useResourceFilters';
+import { useLoadingDelay } from '@/hooks/useLoadingDelay';
 
 interface ResourcesPageProps {
   resources: ResourceDisplay[];
@@ -14,53 +16,23 @@ interface ResourcesPageProps {
 }
 
 export default function ResourcesPage({ resources, categories }: ResourcesPageProps) {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const {
+    searchQuery,
+    setSearchQuery,
+    selectedCategories,
+    setSelectedCategories,
+    toggleCategory,
+    filteredResources,
+  } = useResourceFilters(resources);
   
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
-  
-  // Filter resources based on search query and selected categories
-  const filteredResources = useMemo(() => {
-    return resources.filter(resource => {
-      // Filter by search query
-      const matchesSearch = 
-        debouncedSearchQuery === '' ||
-        resource.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase()) ||
-        (resource.description && resource.description.toLowerCase().includes(debouncedSearchQuery.toLowerCase()));
-        
-      // Filter by selected categories
-      const matchesCategory = 
-        selectedCategories.length === 0 || 
-        (selectedCategories.includes(resource.category));
-        
-      return matchesSearch && matchesCategory;
-    });
-  }, [resources, debouncedSearchQuery, selectedCategories]);
-  
-  // Toggle category selection
-  const toggleCategory = (categoryId: string) => {
-    setSelectedCategories(prev => 
-      prev.includes(categoryId)
-        ? prev.filter(id => id !== categoryId)
-        : [...prev, categoryId]
-    );
-  };
-  
-  // Simulate loading state when filters change
-  useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 300);
-    return () => clearTimeout(timer);
-  }, [debouncedSearchQuery, selectedCategories]);
+  const isLoading = useLoadingDelay([debouncedSearchQuery, selectedCategories]);
   
   return (
     <main className="bg-cream min-h-screen">
       <Navbar />
       
-      {/* Hero Section */}
+      {/* Title Section */}
       <section className="bg-cream text-seth-coral py-16 md:py-24">
         <div className="container mx-auto px-5 md:px-8">
           <h1 className="seth-heading mb-6">
