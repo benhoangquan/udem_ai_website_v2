@@ -47,9 +47,9 @@ export async function getBlogPosts(): Promise<BlogDisplay[]> {
       author: {
         _id: post.author?._id || '',
         name: post.author?.name || 'Unknown Author',
-        avatar: post.author?.avatar ? urlFor(post.author.avatar).width(50).height(50).url() : undefined,
+        avatar: post.author?.avatar ? urlFor(post.author.avatar).width(50).height(50).url() : null,
       },
-      mainImage: post.mainImage ? urlFor(post.mainImage).width(800).url() : undefined,
+      mainImage: post.mainImage ? urlFor(post.mainImage).width(800).url() : null,
       categories: post.categories || [],
       publishedAt: post.publishedAt,
       body: post.body ? extractTextFromBlockContent(post.body).substring(0, 150) + '...' : '',
