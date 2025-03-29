@@ -42,6 +42,9 @@ next-env.d.ts
 
 # ignore all files in the frontend/src/hooks/myBScode directory
 src/hooks/myBScode.ts
+<<<<<<< HEAD
 TODO
+=======
+>>>>>>> 3d050d0111317b0a22f457df3d9c7109ccf98436
 
 
