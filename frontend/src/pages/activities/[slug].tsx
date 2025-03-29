@@ -80,6 +80,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
   
   const activities = await sanityClient.fetch(query);
   
+  // If no activities exist, return empty paths array
+  if (!activities || activities.length === 0) {
+    return {
+      paths: [],
+      fallback: 'blocking'
+    };
+  }
+  
   const paths = activities.map((activity: { slug: string }) => ({
     params: { slug: activity.slug }
   }));
