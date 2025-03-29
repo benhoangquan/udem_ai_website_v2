@@ -5,25 +5,6 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ActivityDisplay } from '@/types/activity';
 import ActivityCard from '@/components/activities/ActivityCard';
 
-// Mock data for fallback with correct typing
-const fallbackProjects: ActivityDisplay[] = [
-  {
-    _id: '1',
-    title: 'Intro to Machine Learning Workshop',
-    slug: 'ml-workshop-1',
-    description: 'Hands-on beginner workshop exploring supervised learning basics.',
-    mainImageUrl: 'https://images.unsplash.com/photo-1559028012-dae1b1ee2496?auto=format&fit=crop&w=600&q=80',
-    type: 'workshop',
-    categories: ['Supervised Learning', 'Scikit-learn', 'Hands-on', 'Beginner'],
-    startDateTime: new Date().toISOString(),
-    location: {
-      type: 'in_person',  
-      address: '123 Main St, Anytown, USA',
-    },
-  },
-  // ... more fallback items if needed
-];
-
 interface ActivitiesCarouselProps {
   activities?: ActivityDisplay[];
   cardClassName?: string;
@@ -45,14 +26,24 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
   dateClassName,
   tagClassName,
 }) => {
-  // Use provided activities or fallback to mock data
-  const projects = activities && activities.length > 0 ? activities : fallbackProjects;
-  
   const [currentIndex, setCurrentIndex] = useState(0);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [isAutoScrolling, setIsAutoScrolling] = useState(false);
   const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
+  if (!activities || activities.length === 0) {
+    return (
+      <div className="w-full h-[500px] flex items-center justify-center">
+        <div className="text-center">
+          <h3 className="text-3xl font-semibold text-cream mb-2">No Activities Available</h3>
+          <p className="text-cream text-xl">Please check back soon for upcoming activities and workshops.</p>
+        </div>
+      </div>
+    );
+  }
+
+  const projects = activities;
+  
   const handlePrevious = () => {
     if (currentIndex > 0) {
       setCurrentIndex(prev => prev - 1);
