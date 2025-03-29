@@ -38,6 +38,7 @@ const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
 
       <nav className="flex flex-col items-center space-y-4 md:space-y-6">
         {[
+          { href: '/', label: 'Home' },
           { href: '/team', label: 'Meet the Team' },
           { href: '/#activities', label: 'Activities' },
           { href: '/resources', label: 'Resources' },
