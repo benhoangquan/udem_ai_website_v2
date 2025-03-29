@@ -18,9 +18,14 @@ export interface ResourceContent {
 export interface RelatedResource {
   _id: string;
   title: string;
-  slug: string;
-  category?: string;
-  difficulty?: string;
+  slug: {
+    current: string;
+  };
+  category?: {
+    _id: string;
+    title: string;
+  };
+  difficulty?: 'beginner' | 'intermediate' | 'advanced';
 }
 
 export interface Resource {
@@ -29,20 +34,15 @@ export interface Resource {
   slug: {
     current: string;
   };
-  category: string;
+  category: {
+    _id: string;
+    title: string;
+  };
   description?: BlockContent;
   content?: ResourceContent[];
   difficulty?: 'beginner' | 'intermediate' | 'advanced';
-  tags?: string[];
-  contributors?: {
-    _id: string;
-    name: string;
-    image?: SanityImageSource;
-  }[];
-  relatedResources?: RelatedResource[];
   publishedAt?: string;
-  updatedAt?: string;
-  featured?: boolean;
+  relatedResources?: RelatedResource[];
 }
 
 // Simplified version for display purposes
@@ -53,8 +53,6 @@ export interface ResourceDisplay {
   category: string;
   description?: string; // Simplified to string for frontend display
   difficulty?: string;
-  tags?: string[];
   publishedAt?: string;
-  updatedAt?: string;
-  featured: boolean;
+  url: string; // URL to the external resource
 } 
