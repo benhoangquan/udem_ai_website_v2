@@ -4,6 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ActivityDisplay } from '@/types/activity';
 import ActivityCard from '@/components/activities/ActivityCard';
+import { useAutoCarousel } from '@/hooks/useAutoCarousel';
 
 interface ActivitiesCarouselProps {
   activities?: ActivityDisplay[];
@@ -26,10 +27,36 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
   dateClassName,
   tagClassName,
 }) => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const [isAutoScrolling, setIsAutoScrolling] = useState(false);
-  const autoScrollIntervalRef = useRef<NodeJS.Timeout | null>(null);
+  const {
+    currentIndex,
+    setCurrentIndex,
+    scrollTo,
+    next,
+    prev,
+    isAutoScrolling,
+    toggleAutoScroll,
+    stopAutoScroll,
+  } = useAutoCarousel(activities?.length || 0, 3000);
+
+  const projects = activities;
+  
+  const handlePrevious = () => {
+    stopAutoScroll();
+    prev();
+  };
+  
+  const handleNext = () => {
+    stopAutoScroll();
+    next();
+  };
+
+  // Stop auto-scrolling when user interacts with navigation
+  const handleUserInteraction = (callback: () => void) => {
+    return () => {
+      stopAutoScroll();
+      callback();
+    };
+  };
 
   if (!activities || activities.length === 0) {
     return (
@@ -42,99 +69,14 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
     );
   }
 
-  const projects = activities;
-  
-  const handlePrevious = () => {
-    if (currentIndex > 0) {
-      setCurrentIndex(prev => prev - 1);
-      scrollToIndex(currentIndex - 1);
-    }
-  };
-
-  const handleNext = () => {
-    if (currentIndex < projects.length - 1) {
-      setCurrentIndex(prev => prev + 1);
-      scrollToIndex(currentIndex + 1);
-    } else {
-      // Loop back to the first slide
-      setCurrentIndex(0);
-      scrollToIndex(0);
-    }
-  };
-
-  const scrollToIndex = (index: number) => {
-    if (scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const items = container.querySelectorAll('.snap-center');
-      
-      if (items[index]) {
-        const item = items[index] as HTMLElement;
-        const containerLeft = container.getBoundingClientRect().left;
-        const itemLeft = item.getBoundingClientRect().left;
-        const scrollPosition = container.scrollLeft + (itemLeft - containerLeft);
-        
-        container.scrollTo({
-          left: scrollPosition,
-          behavior: 'smooth'
-        });
-      }
-    }
-  };
-
-  const goToSlide = (index: number) => {
-    setCurrentIndex(index);
-    scrollToIndex(index);
-  };
-
-  const toggleAutoScroll = () => {
-    setIsAutoScrolling(prev => !prev);
-  };
-
-  useEffect(() => {
-    if (isAutoScrolling) {
-      // Start auto-scrolling at 3-second intervals
-      autoScrollIntervalRef.current = setInterval(() => {
-        if (currentIndex < projects.length - 1) {
-          setCurrentIndex(prev => prev + 1);
-          scrollToIndex(currentIndex + 1);
-        } else {
-          // Loop back to the first slide
-          setCurrentIndex(0);
-          scrollToIndex(0);
-        }
-      }, 3000);
-    } else if (autoScrollIntervalRef.current) {
-      // Stop auto-scrolling if it's disabled
-      clearInterval(autoScrollIntervalRef.current);
-    }
-
-    // Clean up interval on component unmount or when dependencies change
-    return () => {
-      if (autoScrollIntervalRef.current) {
-        clearInterval(autoScrollIntervalRef.current);
-      }
-    };
-  }, [isAutoScrolling, currentIndex, projects.length]);
-
-  // Stop auto-scrolling when user interacts with navigation
-  const handleUserInteraction = (callback: () => void) => {
-    return () => {
-      if (isAutoScrolling) {
-        setIsAutoScrolling(false);
-      }
-      callback();
-    };
-  };
-
   return (
     <div className="w-full  relative">
       <div className="w-full">
         <div 
-          ref={scrollContainerRef}
           className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide h-full"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
-          {projects.map((project, index) => (
+          {projects?.map((project, index) => (
             <div 
               key={project._id} 
               className="flex-shrink-0 w-full md:w-[400px] h-[500px] snap-center px-2"
@@ -161,7 +103,7 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
 
           {/* Dot indicators - centered */}
           <div className="flex justify-center gap-2">
-            {projects.map((_, index) => (
+            {projects?.map((_, index) => (
               <button
                 key={index}
                 className={`h-2 rounded-full transition-all ${
@@ -169,10 +111,8 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
                 }`}
                 onClick={() => {
                   setCurrentIndex(index);
-                  scrollToIndex(index);
-                  if (isAutoScrolling) {
-                    setIsAutoScrolling(false);
-                  }
+                  scrollTo(index);
+                  stopAutoScroll();
                 }}
                 aria-label={`Go to slide ${index + 1}`}
               />
