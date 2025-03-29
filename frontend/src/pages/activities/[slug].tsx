@@ -2,7 +2,7 @@ import React from 'react';
 import { GetStaticProps, GetStaticPaths } from 'next';
 import { sanityClient, urlFor } from '@/lib/sanity';
 import { ActivityDisplay, BlockContent, BlockContentChild } from '@/types/activity';
-import Navbar from '@/components/ui/Navbar';
+import Navbar from '@/components/common/Navbar';
 import Link from 'next/link';
 import Image from 'next/image';
 
@@ -79,6 +79,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }`;
   
   const activities = await sanityClient.fetch(query);
+  
+  // If no activities exist, return empty paths array
+  if (!activities || activities.length === 0) {
+    return {
+      paths: [],
+      fallback: 'blocking'
+    };
+  }
   
   const paths = activities.map((activity: { slug: string }) => ({
     params: { slug: activity.slug }

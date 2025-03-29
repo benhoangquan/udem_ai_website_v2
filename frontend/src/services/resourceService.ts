@@ -1,24 +1,7 @@
 import { sanityClient } from '@/lib/sanity';
 import { Resource, ResourceDisplay } from '@/types/resource';
 import { BlockContent } from '@/types/activity';
-
-/**
- * Extract text from BlockContent for simple display
- */
-function extractTextFromBlockContent(blockContent: BlockContent): string {
-  if (!blockContent || !Array.isArray(blockContent)) return '';
-  
-  // Try to extract text from the first block if it exists
-  const firstBlock = blockContent.find(block => block._type === 'block');
-  if (firstBlock && firstBlock.children) {
-    return firstBlock.children
-      .filter(child => child._type === 'span')
-      .map(span => span.text || '')
-      .join('');
-  }
-  
-  return '';
-}
+import { extractTextFromBlockContent } from './util';
 
 // Define the type for the resource data returned from Sanity
 interface SanityResource {
@@ -54,6 +37,24 @@ interface SanityResource {
   }[];
 }
 
+function normalizeResource(resource: SanityResource): ResourceDisplay {
+  const url = resource.content?.find(item => item.type === 'link')?.url ||
+              resource.content?.find(item => item.type === 'file')?.file?.url || '';
+
+  return {
+    _id: resource._id,
+    title: resource.title,
+    slug: resource.slug,
+    category: resource.category || '',
+    description: typeof resource.description === 'string'
+      ? resource.description
+      : extractTextFromBlockContent(resource.description as BlockContent),
+    difficulty: resource.difficulty,
+    publishedAt: resource.publishedAt,
+    url
+  };
+}
+
 /**
  * Fetches all resources from Sanity CMS
  */
@@ -81,28 +82,7 @@ export async function getResources(): Promise<ResourceDisplay[]> {
 
   try {
     const resources = await sanityClient.fetch<SanityResource[]>(query);
-
-    return resources.map((resource) => {
-      // Extract URL from content array
-      const url = resource.content?.find(item => item.type === 'link')?.url || 
-                 resource.content?.find(item => item.type === 'file')?.file?.url || '';
-
-      return {
-        _id: resource._id,
-        title: resource.title,
-        slug: resource.slug,
-        category: resource.category || '',
-        description: typeof resource.description === 'string'
-          ? resource.description
-          : extractTextFromBlockContent(resource.description as BlockContent),
-        difficulty: resource.difficulty,
-        tags: resource.tags || [],
-        publishedAt: resource.publishedAt,
-        updatedAt: resource.updatedAt,
-        featured: resource.featured || false,
-        url
-      };
-    });
+    return resources.map((resource) => normalizeResource(resource));
   } catch (error) {
     console.error('Error fetching resources:', error);
     return [];
@@ -121,7 +101,6 @@ export async function getResourceBySlug(slug: string): Promise<Resource | null> 
     "category": category->title,
     content,
     difficulty,
-    tags,
     publishedAt,
     updatedAt,
     featured,

@@ -1,24 +1,6 @@
 import { sanityClient, urlFor } from '@/lib/sanity';
-import { Activity, ActivityDisplay, BlockContent, BlockContentChild, Location, SanityImageSource } from '@/types/activity';
-import image from 'next/image';
-
-/**
- * Extract text from BlockContent for simple display
- */
-function extractTextFromBlockContent(blockContent: BlockContent): string {
-  if (!blockContent || !Array.isArray(blockContent)) return '';
-  
-  // Try to extract text from the first block if it exists
-  const firstBlock = blockContent.find(block => block._type === 'block');
-  if (firstBlock && firstBlock.children) {
-    return firstBlock.children
-      .filter((child: BlockContentChild) => child._type === 'span')
-      .map((span: BlockContentChild) => span.text || '')
-      .join('');
-  }
-  
-  return 'Click to view details';
-}
+import { Activity, ActivityDisplay, BlockContent, Location, SanityImageSource } from '@/types/activity';
+import { extractTextFromBlockContent } from './util';
 
 /**
  * Fetches all published activities from Sanity CMS

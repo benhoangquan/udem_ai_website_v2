@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '../components/ui/Navbar';
+import Navbar from '../components/common/Navbar';
 import Head from 'next/head';
 import { getExecutiveMembers } from '../services/memberService';
 import { MemberDisplay } from '../types/member';

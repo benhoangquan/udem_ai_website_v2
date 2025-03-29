@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import TypeWriter from '@/components/ui/TypeWriter';
+import TypeWriter from '@/components/common/TypeWriter';
+import TypeWriterLoop from '../common/TypeWriterLoop';
 
 // Array of images for the carousel
+// TODO: Remove stock images and use our own
 const carouselImages = [
   {
     src: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&h=900&q=80",
@@ -41,25 +43,28 @@ const HeroSection: React.FC = () => {
     <div className="bg-cream py-16 md:py-24">
       <div className="container mx-auto px-5 md:px-8 max-w-full">
         <div className="seth-heading text-seth-coral mb-8 w-full">
-          <TypeWriter 
+          {/* <TypeWriter 
             text="We're UdeM AI,"
             className="block mb-2"
             tag="span"
             speed={40}
-          />
-          <TypeWriter 
-            text="club of AI builders"
-            className="block mb-2"
+          /> */}
+          <span className="block mb-1">We're UdeM AI,</span>
+          <TypeWriterLoop 
+            texts={["club of AI builders",    
+              "community of innovators",
+              "group of ML hackers"]}
+            className="block mb-1"
             tag="span"
-            speed={40}
+            speed={60}
             startDelay={1600} // Start after first line finishes
           />
           <TypeWriter 
             text="@ University of Montreal."
-            className="block"
+            className="block mb-1"
             tag="span"
-            speed={40}
-            startDelay={3200} // Start after second line finishes
+            speed={60}
+            startDelay={1600} // Start after second line finishes
           />
         </div>
 

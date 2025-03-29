@@ -1,4 +1,4 @@
-import { client } from '../mock-data/sanityClient.js';
+import { client } from './sanityClient.js';
 import fs from 'fs';
 import path from 'path';
 

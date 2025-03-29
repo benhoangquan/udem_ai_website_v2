@@ -3,7 +3,7 @@
 import React, { useRef, useEffect, useState } from 'react';
 import ActivitiesCarousel from "@/components/activities/ActivitiesCarousel";
 import { ActivityDisplay } from '@/types/activity';
-import TypeWriter from '@/components/ui/TypeWriter';
+import TypeWriter from '@/components/common/TypeWriter';
 
 interface ActivitiesCarouselProps {
   activities: ActivityDisplay[];

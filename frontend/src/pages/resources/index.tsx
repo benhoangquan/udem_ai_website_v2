@@ -1,12 +1,15 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React from 'react';
 import { GetStaticProps } from 'next';
-import Navbar from '@/components/ui/Navbar';
+import Navbar from '@/components/common/Navbar';
 import ResourceCard from '@/components/resources/ResourceCard';
 import ResourceSkeleton from '@/components/resources/ResourceSkeleton';
 import { ResourceDisplay } from '@/types/resource';
 import { getResources, getResourceCategories } from '@/services/resourceService';
 import { useDebounce } from '@/hooks/useDebounce';
 import { Search } from 'lucide-react';
+import { useResourceFilters } from '@/hooks/useResourceFilters';
+import { useLoadingDelay } from '@/hooks/useLoadingDelay';
+import SearchBar from '@/components/common/SearchBar';
 
 interface ResourcesPageProps {
   resources: ResourceDisplay[];
@@ -14,53 +17,23 @@ interface ResourcesPageProps {
 }
 
 export default function ResourcesPage({ resources, categories }: ResourcesPageProps) {
-  const [searchQuery, setSearchQuery] = useState('');
-  const [selectedCategories, setSelectedCategories] = useState<string[]>([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const {
+    searchQuery,
+    setSearchQuery,
+    selectedCategories,
+    setSelectedCategories,
+    toggleCategory,
+    filteredResources,
+  } = useResourceFilters(resources);
   
   const debouncedSearchQuery = useDebounce(searchQuery, 300);
-  
-  // Filter resources based on search query and selected categories
-  const filteredResources = useMemo(() => {
-    return resources.filter(resource => {
-      // Filter by search query
-      const matchesSearch = 
-        debouncedSearchQuery === '' ||
-        resource.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase()) ||
-        (resource.description && resource.description.toLowerCase().includes(debouncedSearchQuery.toLowerCase()));
-        
-      // Filter by selected categories
-      const matchesCategory = 
-        selectedCategories.length === 0 || 
-        (selectedCategories.includes(resource.category));
-        
-      return matchesSearch && matchesCategory;
-    });
-  }, [resources, debouncedSearchQuery, selectedCategories]);
-  
-  // Toggle category selection
-  const toggleCategory = (categoryId: string) => {
-    setSelectedCategories(prev => 
-      prev.includes(categoryId)
-        ? prev.filter(id => id !== categoryId)
-        : [...prev, categoryId]
-    );
-  };
-  
-  // Simulate loading state when filters change
-  useEffect(() => {
-    setIsLoading(true);
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 300);
-    return () => clearTimeout(timer);
-  }, [debouncedSearchQuery, selectedCategories]);
+  const isLoading = useLoadingDelay([debouncedSearchQuery, selectedCategories]);
   
   return (
     <main className="bg-cream min-h-screen">
       <Navbar />
       
-      {/* Hero Section */}
+      {/* Title Section */}
       <section className="bg-cream text-seth-coral py-16 md:py-24">
         <div className="container mx-auto px-5 md:px-8">
           <h1 className="seth-heading mb-6">
@@ -77,17 +50,7 @@ export default function ResourcesPage({ resources, categories }: ResourcesPagePr
         <div className="flex flex-col md:flex-row gap-4 md:items-center justify-between mb-8">
           {/* Search Bar */}
           <div className="w-full md:w-1/2">
-            <div className="relative">
-              <input
-                type="text"
-                placeholder="Search resources..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full p-3 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-seth-coral"
-                aria-label="Search resources"
-              />
-            <Search className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
-            </div>
+            <SearchBar value={searchQuery} onChange={setSearchQuery} placeholder="Search resources..." />
           </div>
           
           {/* Filter Status */}

@@ -28,9 +28,9 @@ export interface BlogDisplay {
   author: {
     _id: string;
     name: string;
-    avatar?: string; // URL
+    avatar?: string | null; // URL
   };
-  mainImage?: string; // URL
+  mainImage?: string | null; // URL
   categories?: string[];
   publishedAt: string;
   body?: string; // Simplified for display

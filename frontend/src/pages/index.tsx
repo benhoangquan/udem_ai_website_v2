@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '@/components/ui/Navbar';
+import Navbar from '@/components/common/Navbar';
 import HeroSection from '@/components/main/HeroSection';
 import ActivitiesSection from '@/components/main/ActivitiesSection';
 import SpecializationSection from '@/components/main/SpecializationSection';
