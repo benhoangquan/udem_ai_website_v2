@@ -7,7 +7,7 @@ export function useLoadingDelay(deps: DependencyList, delay = 300) {
     setIsLoading(true);
     const timer = setTimeout(() => setIsLoading(false), delay);
     return () => clearTimeout(timer);
-  }, [deps, delay]);
+  }, [...deps, delay]);
 
   return isLoading;
 }
