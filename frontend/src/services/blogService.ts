@@ -1,25 +1,7 @@
 import { sanityClient, urlFor } from '@/lib/sanity';
 import { Blog, BlogDisplay } from '@/types/blog';
 import { BlockContent, SanityImageSource } from '@/types/activity';
-
-/**
- * Extract text from BlockContent for simple display
- */
-function extractTextFromBlockContent(blockContent: BlockContent): string {
-  if (!blockContent || !Array.isArray(blockContent)) return '';
-  
-  // Try to extract text from the first block if it exists
-  const firstBlock = blockContent.find(block => block._type === 'block');
-  if (firstBlock && firstBlock.children) {
-    return firstBlock.children
-      .filter(child => child._type === 'span')
-      .map(span => span.text || '')
-      .join('');
-  }
-  
-  return '';
-}
-
+import { extractTextFromBlockContent } from './util';
 // Define the type for the blog data returned from Sanity
 interface SanityBlogPost {
   _id: string;
