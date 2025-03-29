@@ -3,7 +3,6 @@ import type { AppProps } from 'next/app';
 import { Inter } from "next/font/google";
 import LenisProvider from "@/components/common/LenisProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import "../pages/globals.css";
 import Navbar from "@/components/common/Navbar";
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
