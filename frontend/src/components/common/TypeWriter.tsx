@@ -8,6 +8,8 @@ interface TypeWriterProps {
   speed?: number;
   startDelay?: number;
   tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span' | 'div';
+  typingCursor?: string;
+  typingCursorPersistence?: boolean;
 }
 
 const TypeWriter: React.FC<TypeWriterProps> = ({
@@ -16,6 +18,8 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
   speed = 30,
   startDelay = 0,
   tag = 'p',
+  typingCursor = "|",
+  typingCursorPersistence = false,
 }) => {
   const { isVisible, ref } = useIsVisible(0.2);
   const { displayText, hasTyped } = useTypeWriter(text, speed, startDelay, isVisible);
@@ -26,7 +30,7 @@ const TypeWriter: React.FC<TypeWriterProps> = ({
     <div ref={ref as React.RefObject<HTMLDivElement>}>
       <Component className={className}>
         {displayText}
-        {!hasTyped && <span className="typing-cursor">|</span>}
+        {(typingCursorPersistence || !hasTyped) && <span className="typing-cursor">{typingCursor}</span>}  
       </Component>
     </div>
   );

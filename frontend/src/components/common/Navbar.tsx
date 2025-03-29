@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { useMenuToggle } from '@/hooks/useMenuToggle';
 import MobileMenu from './MobileMenu';
+import TypeWriter from './TypeWriter';
 
 const Navbar: React.FC = () => {
   const { isOpen, toggleMenu, closeMenu } = useMenuToggle();
@@ -12,7 +13,14 @@ const Navbar: React.FC = () => {
     <>
       <nav className="bg-cream w-full py-5 px-5 md:px-8 flex justify-between items-center fixed top-0 left-0 z-50">
         <Link href="/" className="text-seth-coral font-medium text-2xl tracking-wide">
-          UdeM AI_
+          <TypeWriter 
+            text="UdeM AI"
+            className="block mb-1"
+            tag="span"
+            speed={60}
+            typingCursor={"_"}
+            typingCursorPersistence={true}
+          />
         </Link>
 
         <button

@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# ignore all files in the frontend/src/hooks/myBScode directory
+src/hooks/myBScode.ts
+
+
