@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import TypeWriter from '../ui/TypeWriter';
+import TypeWriter from '../common/TypeWriter';
 import AnimatedText from '@/components/common/AnimatedText';
 
 const JoinUsSection: React.FC = () => {

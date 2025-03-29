@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
-import TypeWriter from '@/components/ui/TypeWriter';
+import TypeWriter from '@/components/common/TypeWriter';
 
 // Array of images for the carousel
 const carouselImages = [

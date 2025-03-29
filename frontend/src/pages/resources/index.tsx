@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { GetStaticProps } from 'next';
-import Navbar from '@/components/ui/Navbar';
+import Navbar from '@/components/common/Navbar';
 import ResourceCard from '@/components/resources/ResourceCard';
 import ResourceSkeleton from '@/components/resources/ResourceSkeleton';
 import { ResourceDisplay } from '@/types/resource';

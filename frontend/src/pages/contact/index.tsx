@@ -1,5 +1,5 @@
 import React from 'react';
-import Navbar from '@/components/ui/Navbar';
+import Navbar from '@/components/common/Navbar';
 import Link from 'next/link';
 
 export default function Contact() {
