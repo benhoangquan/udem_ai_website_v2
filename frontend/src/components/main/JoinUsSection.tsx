@@ -2,29 +2,17 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { useScrollColorEffect } from '../../hooks/useScrollColorEffect';
 import TypeWriter from '../ui/TypeWriter';
-
-const titleText = "Let's create something incredible together.";
+import AnimatedText from '@/components/common/AnimatedText';
 
 const JoinUsSection: React.FC = () => {
-  const { containerRef, progressIndex, words } = useScrollColorEffect({ text: titleText });
-
   return (
     <div className="bg-cream py-16 md:py-24">
       <div className="container mx-auto px-6 max-w-5xl">
-        <h2 className="seth-heading mb-8 transition-colors duration-500" ref={containerRef}>
-          {words.map((word, index) => (
-            <span
-              key={index}
-              className={`inline-block transition-colors duration-500 mr-2 ${
-                index <= progressIndex ? "text-seth-coral" : "text-seth-coral/30"
-              }`}
-            >
-              {word}{index < words.length - 1 ? " " : ""}
-            </span>
-          ))}
-        </h2>
+        <AnimatedText
+          text="Let's create something incredible together."
+          className="seth-heading mb-8 transition-colors duration-500"
+        />
 
         <TypeWriter 
           text="Three ways to join us."
