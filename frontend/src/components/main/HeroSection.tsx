@@ -4,22 +4,22 @@ import TypeWriter from '@/components/common/TypeWriter';
 import TypeWriterLoop from '../common/TypeWriterLoop';
 
 // Array of images for the carousel
-// TODO: Remove stock images and use our own
+// Images should be placed in: public/images/hero/
 const carouselImages = [
   {
-    src: "https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&h=900&q=80",
+    src: "/images/hero/hero-1.jpg",
     alt: "UdeM AI Community"
   },
   {
-    src: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&h=900&q=80",
+    src: "/images/hero/hero-2.jpg",
     alt: "AI Programming"
   },
   {
-    src: "https://images.unsplash.com/photo-1531482615713-2afd69097998?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&h=900&q=80",
+    src: "/images/hero/hero-3.jpg",
     alt: "AI Workshop"
   },
   {
-    src: "https://images.unsplash.com/photo-1510915228340-29c85a43dcfe?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&h=900&q=80",
+    src: "/images/hero/hero-4.jpg",
     alt: "AI Research"
   }
 ];
