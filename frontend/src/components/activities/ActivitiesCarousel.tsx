@@ -78,7 +78,7 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
         >
           {projects?.map((project, index) => (
             <div 
-              key={project._id} 
+              key={`${project.title}-${project.startDateTime}-${index}`} 
               className="flex-shrink-0 w-full md:w-[400px] h-[500px] snap-center px-2"
             >
               <ActivityCard 

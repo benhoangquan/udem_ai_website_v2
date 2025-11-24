@@ -35,7 +35,7 @@ const ActivityCard: React.FC<ActivityCardProps> = ({
     <div className={`rounded-lg overflow-hidden project-card w-full h-[500px] flex flex-col ${className}`}>
       <div className={`aspect-[54/45] relative ${imageContainerClassName}`}>
         <Image
-          src={activity.mainImageUrl || '/placeholder-image.jpg'}
+          src={activity.mainImage || '/placeholder-image.jpg'}
           alt={activity.title}
           fill
           className="object-cover rounded-sm"

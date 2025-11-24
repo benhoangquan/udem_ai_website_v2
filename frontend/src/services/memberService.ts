@@ -1,15 +1,14 @@
-import { sanityClient, urlFor } from '@/lib/sanity';
-import { Member, MemberDisplay } from '@/types/member';
-import { SanityImageSource } from '@/types/activity';
+import { getAllMarkdownFiles } from '@/lib/markdown';
+import { MemberDisplay } from '@/types/member';
 
-// Define the type for the member data returned from Sanity
-interface SanityMember {
+// Frontmatter structure for member markdown files
+interface MemberFrontmatter {
   _id: string;
   name: string;
   email?: string;
   role: string;
   executivePosition?: string;
-  avatar?: SanityImageSource;
+  avatar?: string;
   bio?: string;
   socialLinks?: {
     linkedin?: string;
@@ -21,31 +20,20 @@ interface SanityMember {
 }
 
 /**
- * Fetches all members from Sanity CMS
+ * Fetches all members from markdown files
  */
 export async function getMembers(): Promise<MemberDisplay[]> {
-  const query = `*[_type == "member"] | order(role) {
-    _id,
-    name,
-    email,
-    role,
-    executivePosition,
-    avatar,
-    bio,
-    socialLinks
-  }`;
-
   try {
-    const members = await sanityClient.fetch<SanityMember[]>(query);
+    const files = getAllMarkdownFiles<MemberFrontmatter>('members');
 
-    return members.map((member) => ({
-      _id: member._id,
-      name: member.name,
-      role: member.role,
-      executivePosition: member.executivePosition,
-      avatar: member.avatar ? urlFor(member.avatar).width(300).height(300).url() : "",
-      bio: member.bio,
-      socialLinks: member.socialLinks,
+    return files.map(({ data, content }) => ({
+      _id: data._id,
+      name: data.name,
+      role: data.role,
+      executivePosition: data.executivePosition,
+      avatar: data.avatar || '',
+      bio: data.bio || content.trim(),
+      socialLinks: data.socialLinks,
     }));
   } catch (error) {
     console.error('Error fetching members:', error);
@@ -57,31 +45,19 @@ export async function getMembers(): Promise<MemberDisplay[]> {
  * Fetches executive members
  */
 export async function getExecutiveMembers(): Promise<MemberDisplay[]> {
-  const query = `*[_type == "member" && role == "executive"] | order(executivePosition) {
-    _id,
-    name,
-    email,
-    role,
-    executivePosition,
-    avatar,
-    bio,
-    socialLinks
-  }`;
-
   try {
-    const executives = await sanityClient.fetch<SanityMember[]>(query);
-
-    return executives.map((executive) => ({
-      _id: executive._id,
-      name: executive.name,
-      role: executive.role,
-      executivePosition: executive.executivePosition,
-      avatar: executive.avatar ? urlFor(executive.avatar).width(300).height(300).url() : "",
-      bio: executive.bio,
-      socialLinks: executive.socialLinks,
-    }));
+    const members = await getMembers();
+    return members
+      .filter(member => member.role === 'executive')
+      .sort((a, b) => {
+        // Sort by executivePosition if available
+        if (a.executivePosition && b.executivePosition) {
+          return a.executivePosition.localeCompare(b.executivePosition);
+        }
+        return a.name.localeCompare(b.name);
+      });
   } catch (error) {
     console.error('Error fetching executive members:', error);
     return [];
   }
-} 
+}
