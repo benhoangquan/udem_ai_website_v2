@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import TypeWriter from '@/components/common/TypeWriter';
 import TypeWriterLoop from '../common/TypeWriterLoop';
+import { useTranslations } from 'next-intl';
 
 // Array of images for the carousel
 // Images should be placed in: public/images/hero/
@@ -26,6 +27,7 @@ const carouselImages = [
 
 const HeroSection: React.FC = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const t = useTranslations('hero');
   
   useEffect(() => {
     // Set up automatic image rotation every 3 seconds
@@ -49,18 +51,16 @@ const HeroSection: React.FC = () => {
             tag="span"
             speed={40}
           /> */}
-          <span className="block mb-1">We're UdeM AI,</span>
+          <span className="block mb-1">{t('greeting')}</span>
           <TypeWriterLoop 
-            texts={["club of AI builders",    
-              "community of innovators",
-              "group of ML hackers"]}
+            texts={[t('club'), t('community'), t('group')]}
             className="block mb-1"
             tag="span"
             speed={60}
             startDelay={1600} // Start after first line finishes
           />
           <TypeWriter 
-            text="@ University of Montreal."
+            text={t('location')}
             className="block mb-1"
             tag="span"
             speed={60}

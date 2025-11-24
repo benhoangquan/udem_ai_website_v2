@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "team": "Rencontrer l'équipe",
+    "activities": "Activités",
+    "resources": "Ressources",
+    "blog": "Blogue"
+  },
+  "hero": {
+    "greeting": "Nous sommes UdeM AI,",
+    "club": "club de constructeurs d'IA",
+    "community": "communauté d'innovateurs",
+    "group": "groupe de hackers ML",
+    "location": "@ Université de Montréal."
+  },
+  "specialization": {
+    "title": "Passez à l'action avec l'IA.",
+    "description": "Ateliers pratiques. Projets cool. Mentors experts. Rejoignez-nous et développez vos compétences en IA."
+  },
+  "activities": {
+    "title": "Vous voulez savoir ce que nous faisons?",
+    "subtitle": "Découvrez nos activités.",
+    "noActivities": "Aucune activité disponible",
+    "noActivitiesMessage": "Revenez bientôt pour découvrir nos prochaines activités et ateliers."
+  },
+  "joinUs": {
+    "title": "Créons quelque chose d'incroyable ensemble.",
+    "subtitle": "Trois façons de nous rejoindre.",
+    "executive": {
+      "title": "Membre exécutif",
+      "description": "Aidez-nous à diriger et organiser des événements, des ateliers et des activités du club. Nous cherchons toujours de nouveaux exécutifs pour rejoindre l'équipe.",
+      "cta": "Voir les postes"
+    },
+    "active": {
+      "title": "Membre actif",
+      "description": "Rejoignez nos ateliers, cours et projets. Accédez à des avantages comme le soutien de mentors, les soirées pizza, le réseautage, et les opportunités d'emploi et de conférences.",
+      "cta": "Rejoignez notre serveur Discord"
+    },
+    "collab": {
+      "title": "Collaborez avec nous",
+      "description": "Nous sommes ouverts aux collaborations avec d'autres clubs, sponsors et partenaires. Que ce soit pour co-organiser un événement ou fournir du soutien, nous aimerions avoir de vos nouvelles.",
+      "cta": "Envoyez-nous un courriel"
+    }
+  },
+  "contact": {
+    "email": "hey@udemai.ca",
+    "copyright": "© UdeM AI"
+  },
+  "social": {
+    "email": "COURRIEL",
+    "instagram": "IG",
+    "discord": "DISCORD",
+    "linkedin": "LINKEDIN"
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "redirecting": "Redirection vers {page}...",
+    "backToHome": "Retour à l'accueil"
+  },
+  "blog": {
+    "redirecting": "Redirection vers le blogue...",
+    "message": "Nous mettons en place notre blogue. Revenez bientôt!",
+    "clickHere": "Cliquez ici si vous n'êtes pas redirigé automatiquement"
+  },
+  "resources": {
+    "redirecting": "Redirection vers les ressources...",
+    "message": "Nous mettons en place nos ressources. Revenez bientôt!",
+    "clickHere": "Cliquez ici si vous n'êtes pas redirigé automatiquement"
+  }
+}
+

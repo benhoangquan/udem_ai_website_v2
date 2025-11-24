@@ -5,6 +5,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { ActivityDisplay } from '@/types/activity';
 import ActivityCard from '@/components/activities/ActivityCard';
 import { useAutoCarousel } from '@/hooks/useAutoCarousel';
+import { useTranslations } from 'next-intl';
 
 interface ActivitiesCarouselProps {
   activities?: ActivityDisplay[];
@@ -27,6 +28,7 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
   dateClassName,
   tagClassName,
 }) => {
+  const t = useTranslations('activities');
   const {
     currentIndex,
     setCurrentIndex,
@@ -62,8 +64,8 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
     return (
       <div className="w-full h-[500px] flex items-center justify-center">
         <div className="text-center">
-          <h3 className="text-3xl font-semibold text-cream mb-2">No Activities Available</h3>
-          <p className="text-cream text-xl">Please check back soon for upcoming activities and workshops.</p>
+          <h3 className="text-3xl font-semibold text-cream mb-2">{t('noActivities')}</h3>
+          <p className="text-cream text-xl">{t('noActivitiesMessage')}</p>
         </div>
       </div>
     );

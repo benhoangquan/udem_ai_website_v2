@@ -15,9 +15,24 @@ export function parseMarkdownFile(filePath: string): matter.GrayMatterFile<strin
 
 /**
  * Get all markdown files from a directory
+ * @param directory - The directory name (e.g., 'activities', 'members')
+ * @param locale - Optional locale (e.g., 'en', 'fr'). If not provided, uses default directory structure
  */
-export function getMarkdownFiles(directory: string): string[] {
-  const fullPath = path.join(contentDirectory, directory);
+export function getMarkdownFiles(directory: string, locale?: string): string[] {
+  let fullPath: string;
+  
+  if (locale) {
+    // Try locale-specific directory first (e.g., content/activities/en/)
+    const localePath = path.join(contentDirectory, directory, locale);
+    if (fs.existsSync(localePath)) {
+      fullPath = localePath;
+    } else {
+      // Fallback to default directory if locale-specific doesn't exist
+      fullPath = path.join(contentDirectory, directory);
+    }
+  } else {
+    fullPath = path.join(contentDirectory, directory);
+  }
   
   if (!fs.existsSync(fullPath)) {
     return [];
@@ -30,9 +45,11 @@ export function getMarkdownFiles(directory: string): string[] {
 
 /**
  * Read all markdown files from a directory and parse them
+ * @param directory - The directory name (e.g., 'activities', 'members')
+ * @param locale - Optional locale (e.g., 'en', 'fr')
  */
-export function getAllMarkdownFiles<T>(directory: string): Array<{ data: T; content: string; filePath: string }> {
-  const files = getMarkdownFiles(directory);
+export function getAllMarkdownFiles<T>(directory: string, locale?: string): Array<{ data: T; content: string; filePath: string }> {
+  const files = getMarkdownFiles(directory, locale);
   
   return files.map(filePath => {
     const parsed = parseMarkdownFile(filePath);

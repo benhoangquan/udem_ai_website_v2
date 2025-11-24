@@ -13,11 +13,12 @@ interface ActivityFrontmatter {
 
 /**
  * Fetches all activities from markdown files
+ * @param locale - Optional locale (e.g., 'en', 'fr')
  * @returns Array of ActivityDisplay objects ordered by startDateTime
  */
-export async function getActivities(): Promise<ActivityDisplay[]> {
+export async function getActivities(locale?: string): Promise<ActivityDisplay[]> {
   try {
-    const files = getAllMarkdownFiles<ActivityFrontmatter>('activities');
+    const files = getAllMarkdownFiles<ActivityFrontmatter>('activities', locale);
 
     // Transform markdown data to ActivityDisplay format
     const activities: ActivityDisplay[] = files.map(({ data }) => {

@@ -1,0 +1,72 @@
+{
+  "nav": {
+    "home": "Home",
+    "team": "Meet the Team",
+    "activities": "Activities",
+    "resources": "Resources",
+    "blog": "Blog"
+  },
+  "hero": {
+    "greeting": "We're UdeM AI,",
+    "club": "club of AI builders",
+    "community": "community of innovators",
+    "group": "group of ML hackers",
+    "location": "@ University of Montreal."
+  },
+  "specialization": {
+    "title": "Get Real with AI.",
+    "description": "Hands-on workshops. Cool projects. Expert mentors. Join us and level up your AI skills."
+  },
+  "activities": {
+    "title": "Want to know what we're up to?",
+    "subtitle": "Check out our activities.",
+    "noActivities": "No Activities Available",
+    "noActivitiesMessage": "Please check back soon for upcoming activities and workshops."
+  },
+  "joinUs": {
+    "title": "Let's create something incredible together.",
+    "subtitle": "Three ways to join us.",
+    "executive": {
+      "title": "Executive Member",
+      "description": "Help us lead and organize events, workshops, and club activities. We're always looking for new executives to join the team.",
+      "cta": "See openings"
+    },
+    "active": {
+      "title": "Active Member",
+      "description": "Join our workshops, classes, and projects. Get access to perks like mentor support, pizza nights, networking, job and conference opportunities.",
+      "cta": "Join our Discord server"
+    },
+    "collab": {
+      "title": "Collab With Us",
+      "description": "We're open to collaborations with other clubs, sponsors, and partners. Whether it's co-hosting an event or providing support, we'd love to hear from you.",
+      "cta": "Send us an email"
+    }
+  },
+  "contact": {
+    "email": "hey@udemai.ca",
+    "copyright": "© UdeM AI"
+  },
+  "social": {
+    "email": "EMAIL",
+    "instagram": "IG",
+    "discord": "DISCORD",
+    "linkedin": "LINKEDIN"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "redirecting": "Redirecting to {page}...",
+    "backToHome": "Back to Home"
+  },
+  "blog": {
+    "redirecting": "Redirecting to Blog...",
+    "message": "We're setting up our blog. Check back soon!",
+    "clickHere": "Click here if you are not redirected automatically"
+  },
+  "resources": {
+    "redirecting": "Redirecting to Resources...",
+    "message": "We're setting up our resources. Check back soon!",
+    "clickHere": "Click here if you are not redirected automatically"
+  }
+}
+

@@ -43,6 +43,10 @@ export default {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
+        'seth-coral': 'hsl(var(--seth-coral))',
+        'cream': 'hsl(var(--cream))',
+        'off-white': 'hsl(var(--off-white))',
+        'dark-gray': 'hsl(var(--dark-gray))',
         chart: {
           '1': 'hsl(var(--chart-1))',
           '2': 'hsl(var(--chart-2))',

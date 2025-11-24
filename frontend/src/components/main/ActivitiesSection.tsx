@@ -4,6 +4,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import ActivitiesCarousel from "@/components/activities/ActivitiesCarousel";
 import { ActivityDisplay } from '@/types/activity';
 import TypeWriter from '@/components/common/TypeWriter';
+import { useTranslations } from 'next-intl';
 
 interface ActivitiesCarouselProps {
   activities: ActivityDisplay[];
@@ -12,6 +13,7 @@ interface ActivitiesCarouselProps {
 const ActivitiesSection: React.FC<ActivitiesCarouselProps> = ({ activities }) => {
   const sectionRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
+  const t = useTranslations('activities');
 
   useEffect(() => {
     const currentRef = sectionRef.current;
@@ -44,14 +46,14 @@ const ActivitiesSection: React.FC<ActivitiesCarouselProps> = ({ activities }) =>
       <div className="container mx-auto px-6 max-w-5xl">
         <div className="md:max-w-3xl">
           <TypeWriter 
-            text="Want to know what we're up to?"
+            text={t('title')}
             className="seth-heading leading-tight font-medium"
             tag="p"
             speed={50}
           />
 
           <TypeWriter 
-            text="Check out our activities."
+            text={t('subtitle')}
             className="seth-heading-2 leading-snug font-medium mt-6"
             tag="p"
             speed={60}

@@ -51,6 +51,11 @@ html {
     --input: 240 5.9% 90%;
     --ring: 240 5.9% 10%;
     --radius: 0.5rem;
+    /* Custom color variables */
+    --seth-coral: 4 100% 63%;
+    --cream: 60 20% 97%;
+    --off-white: 60 10% 96%;
+    --dark-gray: 0 0% 20%;
   }
 
   .dark {
@@ -73,6 +78,11 @@ html {
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
+    /* Custom color variables for dark mode */
+    --seth-coral: 4 85% 70%;
+    --cream: 240 10% 10%;
+    --off-white: 240 8% 8%;
+    --dark-gray: 0 0% 80%;
   }
 }
 

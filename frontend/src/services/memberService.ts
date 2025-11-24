@@ -21,10 +21,11 @@ interface MemberFrontmatter {
 
 /**
  * Fetches all members from markdown files
+ * @param locale - Optional locale (e.g., 'en', 'fr')
  */
-export async function getMembers(): Promise<MemberDisplay[]> {
+export async function getMembers(locale?: string): Promise<MemberDisplay[]> {
   try {
-    const files = getAllMarkdownFiles<MemberFrontmatter>('members');
+    const files = getAllMarkdownFiles<MemberFrontmatter>('members', locale);
 
     return files.map(({ data, content }) => ({
       _id: data._id,
@@ -43,10 +44,11 @@ export async function getMembers(): Promise<MemberDisplay[]> {
 
 /**
  * Fetches executive members
+ * @param locale - Optional locale (e.g., 'en', 'fr')
  */
-export async function getExecutiveMembers(): Promise<MemberDisplay[]> {
+export async function getExecutiveMembers(locale?: string): Promise<MemberDisplay[]> {
   try {
-    const members = await getMembers();
+    const members = await getMembers(locale);
     return members
       .filter(member => member.role === 'executive')
       .sort((a, b) => {

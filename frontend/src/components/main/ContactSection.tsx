@@ -2,8 +2,11 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Instagram, Linkedin, MessageSquare } from 'lucide-react';
+import { useTranslations } from 'next-intl';
 
 const ContactSection: React.FC = () => {
+  const t = useTranslations('contact');
+  
   return (
     <div className="bg-seth-coral w-full">
       <div className="relative z-10 py-20 md:py-32 px-6 w-full">
@@ -39,12 +42,12 @@ const ContactSection: React.FC = () => {
                 <span className="sr-only">Discord</span>
               </Link>
             </div>
-            <Link href="mailto:hey@udemai.ca" className="text-5xl md:text-6xl text-white font-medium mb-8">
-              hey@udemai.ca
+            <Link href={`mailto:${t('email')}`} className="text-5xl md:text-6xl text-white font-medium mb-8">
+              {t('email')}
             </Link>
 
             <div className="text-white opacity-80 mt-16">
-              © UdeM AI
+              {t('copyright')}
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import Navbar from "@/components/common/Navbar";
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import { NextIntlClientProvider } from 'next-intl';
 const inter = Inter({ subsets: ["latin"] });
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -50,7 +51,7 @@ export default function App({ Component, pageProps }: AppProps) {
   }, [router.asPath]);
 
   return (
-    <>
+    <NextIntlClientProvider messages={pageProps.messages} locale={router.locale || router.defaultLocale || 'en'}>
       {/* <style jsx global>{`
         html {
           font-family: ${inter.style.fontFamily};
@@ -63,6 +64,6 @@ export default function App({ Component, pageProps }: AppProps) {
         <SpeedInsights />
 
       </div>
-    </>
+    </NextIntlClientProvider>
   );
 } 

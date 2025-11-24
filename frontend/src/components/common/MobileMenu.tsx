@@ -3,6 +3,9 @@
 import React from 'react';
 import Link from 'next/link';
 import { X } from 'lucide-react';
+import { useTranslations } from 'next-intl';
+import { useRouter } from 'next/router';
+import LanguageToggle from './LanguageToggle';
 
 interface Props {
   isOpen: boolean;
@@ -10,6 +13,26 @@ interface Props {
 }
 
 const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
+  const t = useTranslations('nav');
+  const tSocial = useTranslations('social');
+  const router = useRouter();
+  const locale = router.locale || 'en';
+
+  const menuItems = [
+    { href: `/${locale}`, label: t('home') },
+    { href: `/${locale}/team`, label: t('team') },
+    { href: `/${locale}#activities`, label: t('activities') },
+    { href: `/${locale}/resources`, label: t('resources') },
+    { href: `/${locale}/blog`, label: t('blog') },
+  ];
+
+  const socialLinks = [
+    { href: 'mailto:hey@udemai.ca', label: tSocial('email') },
+    { href: 'https://instagram.com/udem.ai', label: tSocial('instagram') },
+    { href: 'https://discord.gg/2Ttnw8p2Hy', label: tSocial('discord') },
+    { href: 'https://linkedin.com/company/udem-ai', label: tSocial('linkedin') },
+  ];
+
   return (
     <div 
       className={`fixed inset-0 bg-seth-coral z-50 flex items-center justify-center transition-opacity duration-300 ${
@@ -20,7 +43,7 @@ const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
       aria-hidden={!isOpen}
     >
       <Link 
-        href="/" 
+        href={`/${locale}`}
         className="absolute top-5 left-5 md:left-8 text-white font-medium text-2xl tracking-wide"
         onClick={onClose}
       >
@@ -37,13 +60,7 @@ const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
       </button>
 
       <nav className="flex flex-col items-center space-y-4 md:space-y-6">
-        {[
-          { href: '/', label: 'Home' },
-          { href: '/team', label: 'Meet the Team' },
-          { href: '/#activities', label: 'Activities' },
-          { href: '/resources', label: 'Resources' },
-          { href: '/blog', label: 'Blog' },
-        ].map((link) => (
+        {menuItems.map((link) => (
           <Link
             key={link.href}
             href={link.href}
@@ -56,12 +73,8 @@ const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
       </nav>
 
       <div className="absolute bottom-5 right-5 md:bottom-8 md:right-8 flex flex-col md:flex-row md:space-x-6 space-y-2 md:space-y-0 items-end md:items-center">
-        {[
-          { href: 'mailto:hey@udemai.ca', label: 'EMAIL' },
-          { href: 'https://instagram.com/udem.ai', label: 'IG' },
-          { href: 'https://discord.gg/2Ttnw8p2Hy', label: 'DISCORD' },
-          { href: 'https://linkedin.com/company/udem-ai', label: 'LINKEDIN' },
-        ].map((link) => (
+        <LanguageToggle variant="mobile" className="mb-2 md:mb-0" />
+        {socialLinks.map((link) => (
           <a
             key={link.href}
             href={link.href}

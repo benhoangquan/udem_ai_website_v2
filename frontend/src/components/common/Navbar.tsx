@@ -5,14 +5,18 @@ import Link from 'next/link';
 import { useMenuToggle } from '@/hooks/useMenuToggle';
 import MobileMenu from './MobileMenu';
 import TypeWriter from './TypeWriter';
+import LanguageToggle from './LanguageToggle';
+import { useRouter } from 'next/router';
 
 const Navbar: React.FC = () => {
   const { isOpen, toggleMenu, closeMenu } = useMenuToggle();
+  const router = useRouter();
+  const locale = router.locale || 'en';
 
   return (
     <>
       <nav className="bg-cream w-full py-5 px-5 md:px-8 flex justify-between items-center fixed top-0 left-0 z-50">
-        <Link href="/" className="text-seth-coral font-medium text-2xl tracking-wide">
+        <Link href={`/${locale}`} className="text-seth-coral font-medium text-2xl tracking-wide">
           <TypeWriter 
             text="UdeM AI"
             className="block mb-1"
@@ -23,15 +27,18 @@ const Navbar: React.FC = () => {
           />
         </Link>
 
-        <button
-          onClick={toggleMenu}
-          className="h-8 w-8 rounded-full bg-seth-coral flex items-center justify-center"
-          aria-label="Open menu"
-          aria-haspopup="true"
-          aria-expanded={isOpen}
-        >
-          <span className="sr-only">Menu</span>
-        </button>
+        <div className="flex items-center gap-4">
+          <LanguageToggle variant="desktop" />
+          <button
+            onClick={toggleMenu}
+            className="h-8 w-8 rounded-full bg-seth-coral flex items-center justify-center"
+            aria-label="Open menu"
+            aria-haspopup="true"
+            aria-expanded={isOpen}
+          >
+            <span className="sr-only">Menu</span>
+          </button>
+        </div>
       </nav>
 
       <MobileMenu isOpen={isOpen} onClose={closeMenu} />

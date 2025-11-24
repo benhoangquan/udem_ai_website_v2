@@ -23,13 +23,13 @@ module.exports = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "#FF4D42", // Seth's coral/red color
+          DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
-        'seth-coral': '#FF4D42',
-        'cream': '#F9F9F4',
-        'off-white': '#F5F5F0',
-        'dark-gray': '#333333',
+        'seth-coral': 'hsl(var(--seth-coral))',
+        'cream': 'hsl(var(--cream))',
+        'off-white': 'hsl(var(--off-white))',
+        'dark-gray': 'hsl(var(--dark-gray))',
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",
