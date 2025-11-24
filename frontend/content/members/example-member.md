@@ -13,4 +13,3 @@ socialLinks:
 ---
 
 John Doe is an executive member of the team.
-

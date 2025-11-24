@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React, { useState, useRef, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { ActivityDisplay } from '@/types/activity';
-import ActivityCard from '@/components/activities/ActivityCard';
-import { useAutoCarousel } from '@/hooks/useAutoCarousel';
-import { useTranslations } from 'next-intl';
+import React, { useState, useRef, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import { ActivityDisplay } from "@/types/activity";
+import ActivityCard from "@/components/activities/ActivityCard";
+import { useAutoCarousel } from "@/hooks/useAutoCarousel";
+import { useTranslations } from "next-intl";
 
 interface ActivitiesCarouselProps {
   activities?: ActivityDisplay[];
@@ -18,7 +18,7 @@ interface ActivitiesCarouselProps {
   tagClassName?: string;
 }
 
-const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({ 
+const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
   activities,
   cardClassName,
   imageContainerClassName,
@@ -28,7 +28,7 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
   dateClassName,
   tagClassName,
 }) => {
-  const t = useTranslations('activities');
+  const t = useTranslations("activities");
   const {
     currentIndex,
     setCurrentIndex,
@@ -41,12 +41,12 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
   } = useAutoCarousel(activities?.length || 0, 3000);
 
   const projects = activities;
-  
+
   const handlePrevious = () => {
     stopAutoScroll();
     prev();
   };
-  
+
   const handleNext = () => {
     stopAutoScroll();
     next();
@@ -64,8 +64,10 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
     return (
       <div className="w-full h-[500px] flex items-center justify-center">
         <div className="text-center">
-          <h3 className="text-3xl font-semibold text-cream mb-2">{t('noActivities')}</h3>
-          <p className="text-cream text-xl">{t('noActivitiesMessage')}</p>
+          <h3 className="text-3xl font-semibold text-cream mb-2">
+            {t("noActivities")}
+          </h3>
+          <p className="text-cream text-xl">{t("noActivitiesMessage")}</p>
         </div>
       </div>
     );
@@ -74,16 +76,16 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
   return (
     <div className="w-full  relative">
       <div className="w-full">
-        <div 
+        <div
           className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide h-full"
-          style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
           {projects?.map((project, index) => (
-            <div 
-              key={`${project.title}-${project.startDateTime}-${index}`} 
+            <div
+              key={`${project.title}-${project.startDateTime}-${index}`}
               className="flex-shrink-0 w-full md:w-[400px] h-[500px] snap-center px-2"
             >
-              <ActivityCard 
+              <ActivityCard
                 activity={project}
                 className={cardClassName}
                 imageContainerClassName={imageContainerClassName}
@@ -109,7 +111,7 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
               <button
                 key={index}
                 className={`h-2 rounded-full transition-all ${
-                  currentIndex === index ? 'w-8 bg-cream' : 'w-2 bg-gray-300'
+                  currentIndex === index ? "w-8 bg-cream" : "w-2 bg-gray-300"
                 }`}
                 onClick={() => {
                   setCurrentIndex(index);
@@ -123,15 +125,15 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
 
           {/* Navigation controls - right aligned */}
           <div className="flex-1 flex justify-end gap-2">
-            <button 
+            <button
               className="h-10 w-10 rounded-full bg-cream text-seth-coral flex items-center justify-center hover:bg-opacity-90 transition-colors"
               onClick={handleUserInteraction(handlePrevious)}
               aria-label="Previous slide"
             >
               <ChevronLeft className="h-5 w-5" />
             </button>
-            
-            <button 
+
+            <button
               className="h-10 w-10 rounded-full bg-cream text-seth-coral flex items-center justify-center hover:bg-opacity-90 transition-colors"
               onClick={handleUserInteraction(handleNext)}
               aria-label="Next slide"
@@ -140,12 +142,9 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
             </button>
           </div>
         </div>
-
-        
       </div>
     </div>
   );
 };
-
 
 export default ActivitiesCarousel;

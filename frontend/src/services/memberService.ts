@@ -1,5 +1,5 @@
-import { getAllMarkdownFiles } from '@/lib/markdown';
-import { MemberDisplay } from '@/types/member';
+import { getAllMarkdownFiles } from "@/lib/markdown";
+import { MemberDisplay } from "@/types/member";
 
 // Frontmatter structure for member markdown files
 interface MemberFrontmatter {
@@ -23,21 +23,21 @@ interface MemberFrontmatter {
  * Fetches all members from markdown files
  * @param locale - Optional locale (e.g., 'en', 'fr')
  */
-export async function getMembers(locale?: string): Promise<MemberDisplay[]> {
+export function getMembers(locale?: string): MemberDisplay[] {
   try {
-    const files = getAllMarkdownFiles<MemberFrontmatter>('members', locale);
+    const files = getAllMarkdownFiles<MemberFrontmatter>("members", locale);
 
     return files.map(({ data, content }) => ({
       _id: data._id,
       name: data.name,
       role: data.role,
       executivePosition: data.executivePosition,
-      avatar: data.avatar || '',
+      avatar: data.avatar || "",
       bio: data.bio || content.trim(),
       socialLinks: data.socialLinks,
     }));
   } catch (error) {
-    console.error('Error fetching members:', error);
+    console.error("Error fetching members:", error);
     return [];
   }
 }
@@ -46,11 +46,11 @@ export async function getMembers(locale?: string): Promise<MemberDisplay[]> {
  * Fetches executive members
  * @param locale - Optional locale (e.g., 'en', 'fr')
  */
-export async function getExecutiveMembers(locale?: string): Promise<MemberDisplay[]> {
+export function getExecutiveMembers(locale?: string): MemberDisplay[] {
   try {
-    const members = await getMembers(locale);
+    const members = getMembers(locale);
     return members
-      .filter(member => member.role === 'executive')
+      .filter((member) => member.role === "executive")
       .sort((a, b) => {
         // Sort by executivePosition if available
         if (a.executivePosition && b.executivePosition) {
@@ -59,7 +59,7 @@ export async function getExecutiveMembers(locale?: string): Promise<MemberDispla
         return a.name.localeCompare(b.name);
       });
   } catch (error) {
-    console.error('Error fetching executive members:', error);
+    console.error("Error fetching executive members:", error);
     return [];
   }
 }

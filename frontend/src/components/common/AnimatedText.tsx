@@ -1,14 +1,17 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { useScrollColorEffect } from '@/hooks/useScrollColorEffect';
+import React from "react";
+import { useScrollColorEffect } from "@/hooks/useScrollColorEffect";
 
 interface AnimatedTextProps {
   text: string;
   className?: string;
 }
 
-const AnimatedText: React.FC<AnimatedTextProps> = ({ text, className = '' }) => {
+const AnimatedText: React.FC<AnimatedTextProps> = ({
+  text,
+  className = "",
+}) => {
   const { containerRef, progressIndex, words } = useScrollColorEffect({ text });
 
   return (
@@ -20,7 +23,8 @@ const AnimatedText: React.FC<AnimatedTextProps> = ({ text, className = '' }) => 
             index <= progressIndex ? "text-seth-coral" : "text-seth-coral/30"
           }`}
         >
-          {word}{index < words.length - 1 ? " " : ""}
+          {word}
+          {index < words.length - 1 ? " " : ""}
         </span>
       ))}
     </h2>

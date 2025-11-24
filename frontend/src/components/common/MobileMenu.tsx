@@ -1,11 +1,11 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Link from 'next/link';
-import { X } from 'lucide-react';
-import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/router';
-import LanguageToggle from './LanguageToggle';
+import React from "react";
+import Link from "next/link";
+import { X } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { useRouter } from "next/router";
+import LanguageToggle from "./LanguageToggle";
 
 interface Props {
   isOpen: boolean;
@@ -13,36 +13,39 @@ interface Props {
 }
 
 const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
-  const t = useTranslations('nav');
-  const tSocial = useTranslations('social');
+  const t = useTranslations("nav");
+  const tSocial = useTranslations("social");
   const router = useRouter();
-  const locale = router.locale || 'en';
+  const locale = router.locale || "en";
 
   const menuItems = [
-    { href: `/${locale}`, label: t('home') },
-    { href: `/${locale}/team`, label: t('team') },
-    { href: `/${locale}#activities`, label: t('activities') },
-    { href: `/${locale}/resources`, label: t('resources') },
-    { href: `/${locale}/blog`, label: t('blog') },
+    { href: `/${locale}`, label: t("home") },
+    { href: `/${locale}/team`, label: t("team") },
+    { href: `/${locale}#activities`, label: t("activities") },
+    { href: `/${locale}/resources`, label: t("resources") },
+    { href: `/${locale}/blog`, label: t("blog") },
   ];
 
   const socialLinks = [
-    { href: 'mailto:hey@udemai.ca', label: tSocial('email') },
-    { href: 'https://instagram.com/udem.ai', label: tSocial('instagram') },
-    { href: 'https://discord.gg/2Ttnw8p2Hy', label: tSocial('discord') },
-    { href: 'https://linkedin.com/company/udem-ai', label: tSocial('linkedin') },
+    { href: "mailto:hey@udemai.ca", label: tSocial("email") },
+    { href: "https://instagram.com/udem.ai", label: tSocial("instagram") },
+    { href: "https://discord.gg/2Ttnw8p2Hy", label: tSocial("discord") },
+    {
+      href: "https://linkedin.com/company/udem-ai",
+      label: tSocial("linkedin"),
+    },
   ];
 
   return (
-    <div 
+    <div
       className={`fixed inset-0 bg-seth-coral z-50 flex items-center justify-center transition-opacity duration-300 ${
-        isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
       }`}
       role="dialog"
       aria-modal="true"
       aria-hidden={!isOpen}
     >
-      <Link 
+      <Link
         href={`/${locale}`}
         className="absolute top-5 left-5 md:left-8 text-white font-medium text-2xl tracking-wide"
         onClick={onClose}
@@ -50,7 +53,7 @@ const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
         UdeM AI_
       </Link>
 
-      <button 
+      <button
         onClick={onClose}
         className="absolute top-5 right-5 md:right-8 h-8 w-8 rounded-full bg-white flex items-center justify-center"
         aria-label="Close menu"

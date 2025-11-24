@@ -1,59 +1,75 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { useRouter } from 'next/router';
-import Link from 'next/link';
-import { locales, type Locale } from '@/i18n/config';
+import React from "react";
+import { useRouter } from "next/router";
+import { locales, type Locale } from "@/i18n/config";
 
 interface LanguageToggleProps {
   className?: string;
-  variant?: 'desktop' | 'mobile';
+  variant?: "desktop" | "mobile";
 }
 
-const LanguageToggle: React.FC<LanguageToggleProps> = ({ className = '', variant = 'desktop' }) => {
+const LanguageToggle: React.FC<LanguageToggleProps> = ({
+  className = "",
+  variant = "desktop",
+}) => {
   const router = useRouter();
-  const currentLocale = (router.locale || router.defaultLocale || 'en') as Locale;
-  const pathname = router.pathname;
-  const asPath = router.asPath;
+  const { asPath } = router;
 
-  // Get the other locale
-  const otherLocale = locales.find(locale => locale !== currentLocale) || 'en';
-  
-  // Build the path for the other locale
-  // Remove current locale from path if present, then add new locale
-  const getLocalizedPath = (locale: Locale) => {
-    // If pathname already has [locale], replace it
-    if (pathname.startsWith('/[locale]')) {
-      return asPath.replace(`/${currentLocale}`, `/${locale}`);
-    }
-    // Otherwise, prepend the locale
-    return `/${locale}${asPath === '/' ? '' : asPath}`;
+  // Extract locale from URL path (e.g., /fr -> fr, /en -> en)
+  const pathLocale = asPath.split("/")[1];
+  const currentLocale = (
+    locales.includes(pathLocale as Locale)
+      ? pathLocale
+      : router.locale || router.defaultLocale || "en"
+  ) as Locale;
+
+  const otherLocale: Locale =
+    (locales.find((locale) => locale !== currentLocale) as Locale) ?? "en";
+
+  // Replace the locale in the current path
+  // asPath will be like /en, /fr, /en/resources, etc.
+  let newPath = asPath;
+
+  // Replace current locale with other locale in the path
+  if (asPath.startsWith(`/${currentLocale}/`)) {
+    newPath = asPath.replace(`/${currentLocale}/`, `/${otherLocale}/`);
+  } else if (asPath.startsWith(`/${currentLocale}`)) {
+    newPath = asPath.replace(`/${currentLocale}`, `/${otherLocale}`);
+  } else {
+    // Fallback: prepend locale if not present
+    newPath = `/${otherLocale}${asPath === "/" ? "" : asPath}`;
+  }
+
+  const handleClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    // Navigate to the new path with the other locale
+    router.push(newPath);
   };
 
-  const togglePath = getLocalizedPath(otherLocale);
+  const label = currentLocale === "en" ? "FR" : "EN";
 
-  if (variant === 'mobile') {
+  if (variant === "mobile") {
     return (
       <div className={`flex items-center gap-2 ${className}`}>
-        <Link
-          href={togglePath}
+        <button
+          onClick={handleClick}
           className="text-white hover:opacity-80 transition-opacity text-sm md:text-base uppercase"
         >
-          {currentLocale === 'en' ? 'FR' : 'EN'}
-        </Link>
+          {label}
+        </button>
       </div>
     );
   }
 
   return (
-    <Link
-      href={togglePath}
+    <button
+      onClick={handleClick}
       className={`text-seth-coral hover:opacity-80 transition-opacity text-sm font-medium ${className}`}
     >
-      {currentLocale === 'en' ? 'FR' : 'EN'}
-    </Link>
+      {label}
+    </button>
   );
 };
 
 export default LanguageToggle;
-

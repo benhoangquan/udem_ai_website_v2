@@ -1,14 +1,17 @@
-import { useRef, useEffect, useState } from 'react';
+import { useRef, useEffect, useState } from "react";
 
 interface ScrollColorEffectOptions {
   text: string;
   threshold?: number;
 }
 
-export const useScrollColorEffect = ({ text, threshold = 0 }: ScrollColorEffectOptions) => {
+export const useScrollColorEffect = ({
+  text,
+  threshold = 0,
+}: ScrollColorEffectOptions) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [progressIndex, setProgressIndex] = useState<number>(0);
-  const words = text.split(' ');
+  const words = text.split(" ");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,4 +36,4 @@ export const useScrollColorEffect = ({ text, threshold = 0 }: ScrollColorEffectO
   }, [words.length]);
 
   return { containerRef, progressIndex, words };
-}; 
+};

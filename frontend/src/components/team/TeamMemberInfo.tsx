@@ -1,13 +1,16 @@
-import React from 'react';
-import SocialLinks from './SocialLinks';
-import { MemberDisplay } from '../../types/member';
+import React from "react";
+import SocialLinks from "./SocialLinks";
+import { MemberDisplay } from "../../types/member";
 
 interface TeamMemberInfoProps {
   member: MemberDisplay;
   textColor: string;
 }
 
-const TeamMemberInfo: React.FC<TeamMemberInfoProps> = ({ member, textColor }) => {
+const TeamMemberInfo: React.FC<TeamMemberInfoProps> = ({
+  member,
+  textColor,
+}) => {
   return (
     <div className="w-full flex flex-col justify-between h-full">
       {/* Top section - Name, title, socials */}
@@ -16,13 +19,10 @@ const TeamMemberInfo: React.FC<TeamMemberInfoProps> = ({ member, textColor }) =>
         <p className="seth-heading-4 opacity-80 mb-4">
           {member.executivePosition || member.role}
         </p>
-        
-        <SocialLinks 
-          socialLinks={member.socialLinks} 
-          textColor={textColor} 
-        />
+
+        <SocialLinks socialLinks={member.socialLinks} textColor={textColor} />
       </div>
-      
+
       {/* Bio section */}
       <div>
         <p className="text-base sm:text-lg my-8 max-w-lg">
@@ -33,4 +33,4 @@ const TeamMemberInfo: React.FC<TeamMemberInfoProps> = ({ member, textColor }) =>
   );
 };
 
-export default TeamMemberInfo; 
+export default TeamMemberInfo;

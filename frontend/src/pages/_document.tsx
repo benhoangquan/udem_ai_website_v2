@@ -1,9 +1,9 @@
-import { Html, Head, Main, NextScript } from 'next/document';
-import { DocumentProps } from 'next/document';
+import { Html, Head, Main, NextScript } from "next/document";
+import { DocumentProps } from "next/document";
 
 export default function Document({ __NEXT_DATA__ }: DocumentProps) {
-  const locale = __NEXT_DATA__.locale || 'en';
-  
+  const locale = __NEXT_DATA__.locale || "en";
+
   return (
     <Html lang={locale}>
       <Head />
@@ -13,4 +13,4 @@ export default function Document({ __NEXT_DATA__ }: DocumentProps) {
       </body>
     </Html>
   );
-} 
+}

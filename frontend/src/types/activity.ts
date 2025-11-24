@@ -1,5 +1,5 @@
 export interface Location {
-  type: 'in_person' | 'online' | 'hybrid';
+  type: "in_person" | "online" | "hybrid";
   venue?: string;
   address?: string;
   meetingLink?: string;
@@ -12,5 +12,5 @@ export interface ActivityDisplay {
   startDateTime: string;
   mainImage?: string; // URL for the image
   location?: Location;
-  recurrence?: 'weekly' | 'monthly';
-} 
+  recurrence?: "weekly" | "monthly";
+}

@@ -13,4 +13,4 @@ export interface MemberDisplay {
     instagram?: string;
     discord?: string;
   };
-} 
+}

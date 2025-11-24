@@ -1,4 +1,4 @@
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from "react";
 
 export const useIsVisible = (threshold = 0.2) => {
   const [isVisible, setIsVisible] = useState(false);
@@ -11,7 +11,7 @@ export const useIsVisible = (threshold = 0.2) => {
           setIsVisible(true);
         }
       },
-      { threshold }
+      { threshold },
     );
 
     const current = ref.current;

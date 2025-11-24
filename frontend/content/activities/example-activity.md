@@ -9,4 +9,3 @@ location:
   address: 123 University Street
 recurrence: weekly
 ---
-

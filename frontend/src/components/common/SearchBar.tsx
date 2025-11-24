@@ -1,5 +1,5 @@
 // components/SearchBar.tsx
-import { Search } from 'lucide-react';
+import { Search } from "lucide-react";
 
 interface SearchBarProps {
   value: string;
@@ -7,7 +7,11 @@ interface SearchBarProps {
   placeholder?: string;
 }
 
-const SearchBar = ({ value, onChange, placeholder = "Search..." }: SearchBarProps) => (
+const SearchBar = ({
+  value,
+  onChange,
+  placeholder = "Search...",
+}: SearchBarProps) => (
   <div className="relative">
     <input
       type="text"

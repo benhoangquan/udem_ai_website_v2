@@ -1,6 +1,12 @@
-import React from 'react';
-import { Github, Instagram, Linkedin, MessageSquare, Twitter } from 'lucide-react';
-import { cn } from '../../lib/utils';
+import React from "react";
+import {
+  Github,
+  Instagram,
+  Linkedin,
+  MessageSquare,
+  Twitter,
+} from "lucide-react";
+import { cn } from "../../lib/utils";
 
 interface SocialLinksProps {
   socialLinks?: {
@@ -13,72 +19,60 @@ interface SocialLinksProps {
   textColor: string;
 }
 
-const SocialLinks: React.FC<SocialLinksProps> = ({ socialLinks, textColor }) => {
+const SocialLinks: React.FC<SocialLinksProps> = ({
+  socialLinks,
+  textColor,
+}) => {
   if (!socialLinks) return null;
-  
+
   return (
     <div className="flex gap-4">
       {socialLinks.linkedin && (
-        <a 
+        <a
           href={socialLinks.linkedin}
           target="_blank"
           rel="noopener noreferrer"
-          className={cn(
-            "hover:opacity-80 transition-opacity",
-            textColor
-          )}
+          className={cn("hover:opacity-80 transition-opacity", textColor)}
         >
           <Linkedin size={24} />
         </a>
       )}
       {socialLinks.twitter && (
-        <a 
+        <a
           href={socialLinks.twitter}
           target="_blank"
           rel="noopener noreferrer"
-          className={cn(
-            "hover:opacity-80 transition-opacity",
-            textColor
-          )}
+          className={cn("hover:opacity-80 transition-opacity", textColor)}
         >
           <Twitter size={24} />
         </a>
       )}
       {socialLinks.github && (
-        <a 
+        <a
           href={socialLinks.github}
           target="_blank"
           rel="noopener noreferrer"
-          className={cn(
-            "hover:opacity-80 transition-opacity",
-            textColor
-          )}
+          className={cn("hover:opacity-80 transition-opacity", textColor)}
         >
           <Github size={24} />
-        </a>    
+        </a>
       )}
       {socialLinks.instagram && (
-        <a 
+        <a
           href={socialLinks.instagram}
           target="_blank"
           rel="noopener noreferrer"
-          className={cn(
-            "hover:opacity-80 transition-opacity",
-            textColor
-          )}
+          className={cn("hover:opacity-80 transition-opacity", textColor)}
         >
           <Instagram size={24} />
         </a>
       )}
       {socialLinks.discord && (
-        <a 
+        <a
           href={socialLinks.discord}
           target="_blank"
           rel="noopener noreferrer"
-          className={cn(
-            "hover:opacity-80 transition-opacity",
-            textColor
-          )}
+          className={cn("hover:opacity-80 transition-opacity", textColor)}
         >
           <MessageSquare size={24} />
         </a>
@@ -87,4 +81,4 @@ const SocialLinks: React.FC<SocialLinksProps> = ({ socialLinks, textColor }) => 
   );
 };
 
-export default SocialLinks; 
+export default SocialLinks;

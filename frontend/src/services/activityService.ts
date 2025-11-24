@@ -1,5 +1,5 @@
-import { getAllMarkdownFiles } from '@/lib/markdown';
-import { ActivityDisplay, Location } from '@/types/activity';
+import { getAllMarkdownFiles } from "@/lib/markdown";
+import { ActivityDisplay, Location } from "@/types/activity";
 
 // Frontmatter structure for activity markdown files
 interface ActivityFrontmatter {
@@ -8,7 +8,7 @@ interface ActivityFrontmatter {
   startDateTime: string;
   mainImage?: string;
   location?: Location;
-  recurrence?: 'weekly' | 'monthly';
+  recurrence?: "weekly" | "monthly";
 }
 
 /**
@@ -16,19 +16,25 @@ interface ActivityFrontmatter {
  * @param locale - Optional locale (e.g., 'en', 'fr')
  * @returns Array of ActivityDisplay objects ordered by startDateTime
  */
-export async function getActivities(locale?: string): Promise<ActivityDisplay[]> {
+export async function getActivities(
+  locale?: string,
+): Promise<ActivityDisplay[]> {
   try {
-    const files = getAllMarkdownFiles<ActivityFrontmatter>('activities', locale);
+    const files = getAllMarkdownFiles<ActivityFrontmatter>(
+      "activities",
+      locale,
+    );
 
     // Transform markdown data to ActivityDisplay format
     const activities: ActivityDisplay[] = files.map(({ data }) => {
       // Ensure startDateTime is always a string (gray-matter may parse it as Date)
       const startDateTimeValue = data.startDateTime as string | Date;
-      const startDateTime = typeof startDateTimeValue === 'string' 
-        ? startDateTimeValue 
-        : startDateTimeValue instanceof Date 
-          ? startDateTimeValue.toISOString() 
-          : String(startDateTimeValue);
+      const startDateTime =
+        typeof startDateTimeValue === "string"
+          ? startDateTimeValue
+          : startDateTimeValue instanceof Date
+            ? startDateTimeValue.toISOString()
+            : String(startDateTimeValue);
 
       return {
         title: data.title,
@@ -47,7 +53,7 @@ export async function getActivities(locale?: string): Promise<ActivityDisplay[]>
       return dateB - dateA;
     });
   } catch (error) {
-    console.error('Error fetching activities:', error);
+    console.error("Error fetching activities:", error);
     return [];
   }
 }

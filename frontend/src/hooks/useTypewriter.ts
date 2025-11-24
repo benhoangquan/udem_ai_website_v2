@@ -1,7 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState } from "react";
 
-export const useTypeWriter = (text: string, speed: number, startDelay: number, start: boolean) => {
-  const [displayText, setDisplayText] = useState('');
+export const useTypeWriter = (
+  text: string,
+  speed: number,
+  startDelay: number,
+  start: boolean,
+) => {
+  const [displayText, setDisplayText] = useState("");
   const [hasTyped, setHasTyped] = useState(false);
 
   useEffect(() => {
@@ -33,9 +38,9 @@ export const useTypeWriterList = (
   speed: number,
   startDelay: number,
   delayBetweenTexts: number,
-  start: boolean
+  start: boolean,
 ) => {
-  const [displayText, setDisplayText] = useState('');
+  const [displayText, setDisplayText] = useState("");
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [charIndex, setCharIndex] = useState(0);
@@ -76,7 +81,17 @@ export const useTypeWriterList = (
     }
 
     return () => clearTimeout(timeoutId);
-  }, [start, started, isDeleting, charIndex, currentTextIndex, texts, speed, startDelay]);
+  }, [
+    start,
+    started,
+    isDeleting,
+    charIndex,
+    currentTextIndex,
+    texts,
+    speed,
+    startDelay,
+    delayBetweenTexts,
+  ]);
 
   return { displayText };
 };

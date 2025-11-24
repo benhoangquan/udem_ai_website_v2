@@ -1,15 +1,13 @@
-import React from 'react';
-import Navbar from '../components/common/Navbar';
-import Head from 'next/head';
-import { getExecutiveMembers } from '../services/memberService';
-import { MemberDisplay } from '../types/member';
-import { GetStaticProps, GetStaticPaths } from 'next';
-import { locales } from '@/i18n/config';
-import TeamCarousel from '../components/team/TeamCarousel';
+import React from "react";
+import Head from "next/head";
+import { getExecutiveMembers } from "@/services/memberService";
+import { MemberDisplay } from "@/types/member";
+import { GetStaticProps, GetStaticPaths } from "next";
+import { locales } from "@/i18n/config";
+import TeamCarousel from "@/components/team/TeamCarousel";
 
 interface TeamPageProps {
   teamMembers: MemberDisplay[];
-  messages: any;
 }
 
 const TeamPage: React.FC<TeamPageProps> = ({ teamMembers }) => {
@@ -17,10 +15,12 @@ const TeamPage: React.FC<TeamPageProps> = ({ teamMembers }) => {
     <>
       <Head>
         <title>Our Team | UdeM AI</title>
-        <meta name="description" content="Meet the amazing team behind UdeM AI" />
+        <meta
+          name="description"
+          content="Meet the amazing team behind UdeM AI"
+        />
       </Head>
-      
-      <Navbar />
+
       <TeamCarousel members={teamMembers} />
     </>
   );
@@ -38,7 +38,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   try {
     const members = await getExecutiveMembers(locale);
     const messages = (await import(`../../messages/${locale}.json`)).default;
-    
+
     return {
       props: {
         teamMembers: members,
@@ -47,7 +47,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       revalidate: 3600,
     };
   } catch (error) {
-    console.error('Error fetching team members:', error);
+    console.error("Error fetching team members:", error);
     const messages = (await import(`../../messages/${locale}.json`)).default;
     return {
       props: {
@@ -60,4 +60,3 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
 };
 
 export default TeamPage;
-
