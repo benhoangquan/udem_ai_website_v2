@@ -6,7 +6,6 @@ import { useTranslations } from "next-intl";
 
 const SpecializationSection: React.FC = () => {
   const t = useTranslations("specialization");
-
   return (
     <div className="bg-cream text-seth-coral py-16 md:py-16 w-[80%] mx-auto">
       <div className="container mx-auto px-8 max-w-full">

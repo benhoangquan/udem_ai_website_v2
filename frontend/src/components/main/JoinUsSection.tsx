@@ -11,7 +11,6 @@ const JoinUsSection: React.FC = () => {
   const t = useTranslations("joinUs");
   const router = useRouter();
   const locale = router.locale || "en";
-
   return (
     <div className="bg-cream py-16 md:py-24">
       <div className="container mx-auto px-6 max-w-5xl">

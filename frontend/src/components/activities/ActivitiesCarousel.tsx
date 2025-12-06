@@ -45,9 +45,14 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
   const handlePrevious = () => {
     stopAutoScroll();
     prev();
+    stopAutoScroll();
+    prev();
   };
-
+  
   const handleNext = () => {
+    stopAutoScroll();
+    next();
+  };
     stopAutoScroll();
     next();
   };
@@ -55,6 +60,7 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
   // Stop auto-scrolling when user interacts with navigation
   const handleUserInteraction = (callback: () => void) => {
     return () => {
+      stopAutoScroll();
       stopAutoScroll();
       callback();
     };
@@ -108,6 +114,7 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
           {/* Dot indicators - centered */}
           <div className="flex justify-center gap-2">
             {projects?.map((_, index) => (
+            {projects?.map((_, index) => (
               <button
                 key={index}
                 className={`h-2 rounded-full transition-all ${
@@ -115,6 +122,8 @@ const ActivitiesCarousel: React.FC<ActivitiesCarouselProps> = ({
                 }`}
                 onClick={() => {
                   setCurrentIndex(index);
+                  scrollTo(index);
+                  stopAutoScroll();
                   scrollTo(index);
                   stopAutoScroll();
                 }}
