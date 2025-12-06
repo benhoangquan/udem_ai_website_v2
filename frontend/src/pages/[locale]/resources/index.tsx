@@ -5,7 +5,7 @@ import { GetStaticProps, GetStaticPaths } from "next";
 import { locales } from "@/i18n/config";
 
 // Placeholder Substack URL - replace with actual Substack URL
-const SUBSTACK_URL = "https://substack.com/@udemai";
+const SUBSTACK_URL = "https://substack.com/placeholder";
 
 export default function ResourcesPage() {
   const t = useTranslations("resources");
