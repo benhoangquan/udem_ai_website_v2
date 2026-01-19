@@ -77,14 +77,7 @@
   },
   "projects": {
     "title": "Projects",
-    "project1": {
-      "title": "Project 1",
-      "description": "Description of the first project coming soon."
-    },
-    "project2": {
-      "title": "Project 2",
-      "description": "Description of the second project coming soon."
-    }
+    "comingSoon": "Projects Coming Soon..."
   },
   "about": {
     "title": "About Us",

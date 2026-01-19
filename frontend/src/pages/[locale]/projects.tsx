@@ -57,44 +57,10 @@ export default function ProjectsPage() {
         <div className="container mx-auto px-6 max-w-6xl">
           <h1 className="text-5xl font-bold mb-12 text-center">{t("title")}</h1>
 
-          <div className="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
-            {projects.map((project) => (
-              <div
-                key={project.id}
-                className="break-inside-avoid bg-white rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300"
-              >
-                <div className="relative h-48 w-full">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-6">
-                  <div className="flex flex-wrap gap-2 mb-3">
-                    {project.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-2 py-1 bg-seth-coral/10 text-seth-coral text-xs font-semibold rounded-full"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                  <h2 className="text-2xl font-bold mb-2">{project.title}</h2>
-                  <p className="text-gray-600 mb-4">{project.description}</p>
-                  <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-block bg-seth-coral text-white py-2 px-4 rounded hover:bg-seth-coral/90 transition-colors font-semibold"
-                  >
-                    View on GitHub
-                  </a>
-                </div>
-              </div>
-            ))}
+          <div className="flex justify-center items-center py-24">
+            <p className="text-3xl font-semibold italic text-gray-500">
+              {t("comingSoon")}
+            </p>
           </div>
 
           <div className="mt-16 text-center">
