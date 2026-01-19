@@ -20,10 +20,9 @@ const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
 
   const menuItems = [
     { href: `/${locale}`, label: t("home") },
-    { href: `/${locale}/team`, label: t("team") },
-    { href: `/${locale}#activities`, label: t("activities") },
-    { href: `/${locale}/resources`, label: t("resources") },
-    { href: `/${locale}/blog`, label: t("blog") },
+    { href: `/${locale}#about`, label: t("about") },
+    { href: `/${locale}/projects`, label: t("projects") },
+    { href: `/${locale}#resources`, label: t("resources") },
   ];
 
   const socialLinks = [

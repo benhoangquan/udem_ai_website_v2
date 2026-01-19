@@ -1,4 +1,5 @@
 import "@/styles/globals.css";
+import "@/styles/calendar.css";
 import type { AppProps } from "next/app";
 import LenisProvider from "@/components/common/LenisProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next";

@@ -1,9 +1,10 @@
 import React from "react";
 import HeroSection from "@/components/main/HeroSection";
-import ActivitiesSection from "@/components/main/ActivitiesSection";
-import SpecializationSection from "@/components/main/SpecializationSection";
-import JoinUsSection from "@/components/main/JoinUsSection";
 import ContactSection from "@/components/main/ContactSection";
+import ProjectsSection from "@/components/main/ProjectsSection";
+import ReadingSection from "@/components/main/ReadingSection";
+import AboutSection from "@/components/main/AboutSection";
+import EventsCalendar from "@/components/main/EventsCalendar";
 
 import { getActivities } from "@/services/activityService";
 import { ActivityDisplay } from "@/types/activity";
@@ -18,11 +19,13 @@ export default function Home({ activities }: HomeProps) {
   return (
     <main className="bg-cream">
       <HeroSection />
-      <SpecializationSection />
-      <div id="activities">
+      <AboutSection />
+      <EventsCalendar />
+      <ProjectsSection />
+      {/* <div id="activities">
         <ActivitiesSection activities={activities} />
-      </div>
-      <JoinUsSection />
+      </div> */}
+      <ReadingSection />
       <ContactSection />
     </main>
   );

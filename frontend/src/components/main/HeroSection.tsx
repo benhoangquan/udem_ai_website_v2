@@ -3,6 +3,7 @@ import Image from "next/image";
 import TypeWriter from "@/components/common/TypeWriter";
 import TypeWriterLoop from "../common/TypeWriterLoop";
 import { useTranslations } from "next-intl";
+import ParticlesBackground from "@/components/common/ParticlesBackground";
 
 // Array of images for the carousel
 // Images should be placed in: public/images/hero/
@@ -11,10 +12,7 @@ const carouselImages = [
     src: "/images/hero/hero-1.jpg",
     alt: "UdeM AI Community",
   },
-  {
-    src: "/images/hero/hero-2.jpg",
-    alt: "AI Programming",
-  },
+
   {
     src: "/images/hero/hero-3.jpg",
     alt: "AI Workshop",
@@ -42,8 +40,9 @@ const HeroSection: React.FC = () => {
   }, []);
 
   return (
-    <div className="bg-cream py-16 md:py-24">
-      <div className="container mx-auto px-5 md:px-8 max-w-full">
+    <div className="bg-cream py-16 md:py-24 relative overflow-hidden">
+      <ParticlesBackground />
+      <div className="container mx-auto px-5 md:px-8 max-w-full relative z-10">
         <div className="seth-heading text-seth-coral mb-8 w-full">
           {/* <TypeWriter 
             text="We're UdeM AI,"
@@ -51,21 +50,12 @@ const HeroSection: React.FC = () => {
             tag="span"
             speed={40}
           /> */}
-          <span className="block mb-1">{t("greeting")}</span>
-          <TypeWriterLoop
-            texts={[t("club"), t("community"), t("group")]}
-            className="block mb-1"
-            tag="span"
-            speed={60}
-            startDelay={1600} // Start after first line finishes
-          />
-          <TypeWriter
-            text={t("location")}
-            className="block mb-1"
-            tag="span"
-            speed={60}
-            startDelay={1600} // Start after second line finishes
-          />
+          <span className="block mb-2 font-light text-3xl md:text-4xl">
+            {t("greeting")}
+          </span>
+          <span className="block mb-1 font-bold text-5xl md:text-7xl">
+            {t("location")}
+          </span>
         </div>
 
         <div className="mt-12">

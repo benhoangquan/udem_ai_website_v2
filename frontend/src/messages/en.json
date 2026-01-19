@@ -4,14 +4,13 @@
     "team": "Meet the Team",
     "activities": "Activities",
     "resources": "Resources",
+    "projects": "Projects",
+    "about": "About",
     "blog": "Blog"
   },
   "hero": {
-    "greeting": "We're UdeM AI,",
-    "club": "club of AI builders",
-    "community": "community of innovators",
-    "group": "group of ML hackers",
-    "location": "@ University of Montreal."
+    "greeting": "Artificial Intelligence Club of",
+    "location": "@ University of Montreal"
   },
   "specialization": {
     "title": "Get Real with AI.",
@@ -66,6 +65,38 @@
   "resources": {
     "redirecting": "Redirecting to Resources...",
     "message": "We're setting up our resources. Check back soon!",
-    "clickHere": "Click here if you are not redirected automatically"
+    "clickHere": "Click here if you are not redirected automatically",
+    "title": "Weekly Material / Resources",
+    "paperTitle": "Paper of the Week",
+    "paperName": "A Few Useful Things to Know About Machine Learning",
+    "authors": "Pedro Domingos (2012)",
+    "readMore": "Read More",
+    "archiveTitle": "Previous Papers",
+    "paper1Title": "Attention Is All You Need",
+    "paper1Authors": "Vaswani et al. (2017)"
+  },
+  "projects": {
+    "title": "Projects",
+    "project1": {
+      "title": "Project 1",
+      "description": "Description of the first project coming soon."
+    },
+    "project2": {
+      "title": "Project 2",
+      "description": "Description of the second project coming soon."
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "description1": "We are UdeM AI, a community dedicated to exploring specific and advanced topics in Artificial Intelligence.",
+    "description2": "Follow our latest updates on LinkedIn:",
+    "linkedin": "Visit our LinkedIn Page"
+  },
+  "events": {
+    "title": "Upcoming Events",
+    "meeting": "Weekly Meeting (Fridays 12:45-13:45)",
+    "location": "Check out Discord",
+    "noEvents": "No events scheduled for this day.",
+    "allEvents": "All Upcoming"
   }
 }

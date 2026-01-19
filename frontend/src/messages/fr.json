@@ -4,14 +4,13 @@
     "team": "Rencontrer l'équipe",
     "activities": "Activités",
     "resources": "Ressources",
+    "projects": "Projets",
+    "about": "À propos",
     "blog": "Blogue"
   },
   "hero": {
-    "greeting": "Nous sommes UdeM AI,",
-    "club": "club de constructeurs d'IA",
-    "community": "communauté d'innovateurs",
-    "group": "groupe de hackers ML",
-    "location": "@ Université de Montréal."
+    "greeting": "Club Intelligence Artificielle de",
+    "location": "@ Université de Montréal"
   },
   "specialization": {
     "title": "Passez à l'action avec l'IA.",
@@ -66,6 +65,38 @@
   "resources": {
     "redirecting": "Redirection vers les ressources...",
     "message": "Nous mettons en place nos ressources. Revenez bientôt!",
-    "clickHere": "Cliquez ici si vous n'êtes pas redirigé automatiquement"
+    "clickHere": "Cliquez ici si vous n'êtes pas redirigé automatiquement",
+    "title": "Matériel Hebdomadaire / Ressources",
+    "paperTitle": "Papier de la semaine",
+    "paperName": "A Few Useful Things to Know About Machine Learning",
+    "authors": "Pedro Domingos (2012)",
+    "readMore": "Lire la suite",
+    "archiveTitle": "Papiers précédents",
+    "paper1Title": "Attention Is All You Need",
+    "paper1Authors": "Vaswani et al. (2017)"
+  },
+  "projects": {
+    "title": "Projets",
+    "project1": {
+      "title": "Projet 1",
+      "description": "Description du premier projet à venir."
+    },
+    "project2": {
+      "title": "Projet 2",
+      "description": "Description du deuxième projet à venir."
+    }
+  },
+  "about": {
+    "title": "À propos de nous",
+    "description1": "Nous sommes UdeM AI, une communauté dédiée à l'exploration de sujets spécifiques et avancés en Intelligence Artificielle.",
+    "description2": "Suivez nos dernières mises à jour sur LinkedIn :",
+    "linkedin": "Visitez notre page LinkedIn"
+  },
+  "events": {
+    "title": "Événements à venir",
+    "meeting": "Réunion Hebdomadaire (Vendredis 12h45-13h45)",
+    "location": "Consultez Discord",
+    "noEvents": "Aucun événement prévu pour ce jour.",
+    "allEvents": "Tous les événements à venir"
   }
 }
