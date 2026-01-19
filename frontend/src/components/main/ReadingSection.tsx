@@ -21,7 +21,7 @@ const ReadingSection: React.FC = () => {
         {/* Current Paper */}
         <div className="bg-white p-8 rounded-lg shadow-md mb-8">
           <span className="bg-seth-coral/10 text-seth-coral px-3 py-1 rounded-full text-sm font-bold mb-4 inline-block">
-            2025-03-21
+            2026-01-19
           </span>
           <h3 className="text-2xl font-semibold mb-2">{t("paperTitle")}</h3>
           <p className="text-lg mb-4 font-bold">{t("paperName")}</p>
