@@ -1,7 +1,6 @@
 import "@/styles/globals.css";
 import "@/styles/calendar.css";
 import type { AppProps } from "next/app";
-import LenisProvider from "@/components/common/LenisProvider";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Navbar from "@/components/common/Navbar";
 import { useEffect } from "react";
@@ -77,12 +76,9 @@ export default function App({ Component, pageProps }: AppProps) {
 
   return (
     <IntlProvider messages={messages} locale={locale}>
-      <div className="lenis lenis-smooth">
-        <LenisProvider />
-        <Navbar />
-        <Component {...pageProps} />
-        <SpeedInsights />
-      </div>
+      <Navbar />
+      <Component {...pageProps} />
+      <SpeedInsights />
     </IntlProvider>
   );
 }
