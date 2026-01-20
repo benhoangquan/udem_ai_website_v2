@@ -42,12 +42,6 @@ const ContactSection: React.FC = () => {
                 <span className="sr-only">Discord</span>
               </Link>
             </div>
-            <Link
-              href={`mailto:${t("email")}`}
-              className="text-5xl md:text-6xl text-white font-medium mb-8"
-            >
-              {t("email")}
-            </Link>
 
             <div className="text-white opacity-80 mt-16">{t("copyright")}</div>
           </div>

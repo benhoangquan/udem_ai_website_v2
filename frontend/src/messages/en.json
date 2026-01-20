@@ -42,8 +42,18 @@
     }
   },
   "contact": {
-    "email": "hey@udemai.ca",
+    "email": "anas.el-ghoudane@umontreal.ca",
     "copyright": "© UdeM AI"
+  },
+  "members": {
+    "title": "Our Team",
+    "subtitle": "Meet the people behind UdeM AI",
+    "president": "President",
+    "vicePresident": "Vice-President",
+    "vpLogistics": "VP - Logistics",
+    "vpExternalComms": "VP - External Communications",
+    "awayOnQuest": "Currently away on a quest",
+    "inCharge": "Currently in charge of club"
   },
   "social": {
     "email": "EMAIL",
@@ -82,8 +92,12 @@
   "about": {
     "title": "About Us",
     "description1": "We are UdeM AI, a community dedicated to exploring specific and advanced topics in Artificial Intelligence.",
-    "description2": "Follow our latest updates on LinkedIn:",
-    "linkedin": "Visit our LinkedIn Page"
+    "description2": "Follow our latest updates:",
+    "linkedin": "Visit our LinkedIn Page",
+    "instagram": "Follow us on Instagram",
+    "discord": "Join our Discord Server",
+    "contactTitle": "Contact Us",
+    "contactMessage": "For any inquiries, collaborations, or questions about the club, feel free to reach out:"
   },
   "events": {
     "title": "Upcoming Events",

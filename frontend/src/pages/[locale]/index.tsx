@@ -3,7 +3,6 @@ import HeroSection from "@/components/main/HeroSection";
 import ContactSection from "@/components/main/ContactSection";
 import ProjectsSection from "@/components/main/ProjectsSection";
 import ReadingSection from "@/components/main/ReadingSection";
-import AboutSection from "@/components/main/AboutSection";
 import EventsCalendar from "@/components/main/EventsCalendar";
 
 import { getActivities } from "@/services/activityService";
@@ -19,7 +18,6 @@ export default function Home({ activities }: HomeProps) {
   return (
     <main className="bg-cream">
       <HeroSection />
-      <AboutSection />
       <EventsCalendar />
       <ProjectsSection />
       {/* <div id="activities">

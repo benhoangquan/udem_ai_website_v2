@@ -1,27 +1,84 @@
 import React from "react";
 import Head from "next/head";
-import { getExecutiveMembers } from "@/services/memberService";
-import { MemberDisplay } from "@/types/member";
 import { GetStaticProps, GetStaticPaths } from "next";
 import { locales } from "@/i18n/config";
-import TeamCarousel from "@/components/team/TeamCarousel";
+import { useTranslations } from "next-intl";
+import { Linkedin } from "lucide-react";
 
-interface TeamPageProps {
-  teamMembers: MemberDisplay[];
-}
+// Team members data - roleKey and noteKey reference translation keys
+const teamMembers = [
+  {
+    name: "Arnaud Denis-Remillard",
+    roleKey: "president",
+    noteKey: "awayOnQuest",
+    linkedin: "https://www.linkedin.com/in/arnaud-denis-remillard-25b3a8296/",
+  },
+  {
+    name: "Anas Elghoudane",
+    roleKey: "vicePresident",
+    noteKey: "inCharge",
+    linkedin: "https://www.linkedin.com/in/anas-elghoudane-a1240b2b6/",
+  },
+  {
+    name: "Quan Tran",
+    roleKey: "vpLogistics",
+    linkedin: "https://www.linkedin.com/in/benhoangquan/",
+  },
+  {
+    name: "Emil Rose Levy",
+    roleKey: "vpExternalComms",
+    linkedin: "https://www.linkedin.com/in/emil-rose-levy-519b03242/",
+  },
+];
 
-const TeamPage: React.FC<TeamPageProps> = ({ teamMembers }) => {
+const TeamPage: React.FC = () => {
+  const t = useTranslations("members");
+
   return (
     <>
       <Head>
-        <title>Our Team | UdeM AI</title>
+        <title>{t("title")} | UdeM AI</title>
         <meta
           name="description"
-          content="Meet the amazing team behind UdeM AI"
+          content="Meet the team behind UdeM AI"
         />
       </Head>
 
-      <TeamCarousel members={teamMembers} />
+      <main className="min-h-screen bg-cream pt-24">
+        <div className="container mx-auto px-6 max-w-4xl py-16">
+          <h1 className="text-5xl font-bold mb-4 text-seth-coral">{t("title")}</h1>
+          <p className="text-xl text-seth-coral/80 mb-12">{t("subtitle")}</p>
+
+          <ul className="space-y-6">
+            {teamMembers.map((member) => (
+              <li
+                key={member.name}
+                className="flex items-start gap-3 text-seth-coral"
+              >
+                <span className="text-2xl">•</span>
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <span className="text-xl font-semibold">{member.name}</span>
+                    <span className="text-lg text-seth-coral/70">— {t(member.roleKey)}</span>
+                    <a
+                      href={member.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-seth-coral hover:text-seth-coral/70 transition-colors"
+                      aria-label={`${member.name}'s LinkedIn`}
+                    >
+                      <Linkedin size={20} />
+                    </a>
+                  </div>
+                  {member.noteKey && (
+                    <p className="text-seth-coral/60 italic mt-1">({t(member.noteKey)})</p>
+                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </main>
     </>
   );
 };
@@ -35,28 +92,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const locale = params?.locale as string;
-  try {
-    const members = await getExecutiveMembers(locale);
-    const messages = (await import(`../../messages/${locale}.json`)).default;
+  const messages = (await import(`../../messages/${locale}.json`)).default;
 
-    return {
-      props: {
-        teamMembers: members,
-        messages,
-      },
-      revalidate: 3600,
-    };
-  } catch (error) {
-    console.error("Error fetching team members:", error);
-    const messages = (await import(`../../messages/${locale}.json`)).default;
-    return {
-      props: {
-        teamMembers: [],
-        messages,
-      },
-      revalidate: 300,
-    };
-  }
+  return {
+    props: {
+      messages,
+    },
+  };
 };
 
 export default TeamPage;
