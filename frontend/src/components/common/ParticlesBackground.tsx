@@ -29,7 +29,7 @@ const ParticlesBackground = () => {
             value: "transparent",
           },
         },
-        fpsLimit: 120,
+        fpsLimit: 60, // Reduced from 120
         interactivity: {
           events: {
             onHover: {
@@ -73,7 +73,7 @@ const ParticlesBackground = () => {
               enable: true,
               area: 800,
             },
-            value: 60,
+            value: 30, // Reduced from 60
           },
           opacity: {
             value: 0.3,
@@ -85,7 +85,7 @@ const ParticlesBackground = () => {
             value: { min: 1, max: 3 },
           },
         },
-        detectRetina: true,
+        detectRetina: false, // Disabled for performance
       }}
     />
   );
