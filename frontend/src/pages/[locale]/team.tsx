@@ -22,6 +22,11 @@ const teamMembers = [
     roleKey: "vpExternalComms",
     linkedin: "https://www.linkedin.com/in/emil-rose-levy-519b03242/",
   },
+  {
+    name: "Alexandre Tancrède",
+    roleKey: "vpResearch",
+    linkedin: "https://www.linkedin.com/in/alexandre-tancr%C3%A8de/",
+  },
 ];
 
 // Advisors data
