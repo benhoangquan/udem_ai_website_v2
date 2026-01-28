@@ -52,8 +52,8 @@
     "vicePresident": "Vice-President",
     "vpLogistics": "VP - Logistics",
     "vpExternalComms": "VP - External Communications",
-    "awayOnQuest": "Currently away on a quest",
-    "inCharge": "Currently in charge of club"
+    "advisorsTitle": "Advisors",
+    "advisorsSubtitle": "Guidance and mentorship"
   },
   "social": {
     "email": "EMAIL",

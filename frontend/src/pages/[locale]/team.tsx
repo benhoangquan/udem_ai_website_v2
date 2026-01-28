@@ -5,18 +5,11 @@ import { locales } from "@/i18n/config";
 import { useTranslations } from "next-intl";
 import { Linkedin } from "lucide-react";
 
-// Team members data - roleKey and noteKey reference translation keys
+// Team members data - roleKey references translation keys
 const teamMembers = [
   {
-    name: "Arnaud Denis-Remillard",
-    roleKey: "president",
-    noteKey: "awayOnQuest",
-    linkedin: "https://www.linkedin.com/in/arnaud-denis-remillard-25b3a8296/",
-  },
-  {
     name: "Anas Elghoudane",
-    roleKey: "vicePresident",
-    noteKey: "inCharge",
+    roleKey: "president",
     linkedin: "https://www.linkedin.com/in/anas-elghoudane-a1240b2b6/",
   },
   {
@@ -28,6 +21,18 @@ const teamMembers = [
     name: "Emil Rose Levy",
     roleKey: "vpExternalComms",
     linkedin: "https://www.linkedin.com/in/emil-rose-levy-519b03242/",
+  },
+];
+
+// Advisors data
+const advisors = [
+  {
+    name: "Arnaud Denis-Remillard",
+    linkedin: "https://www.linkedin.com/in/arnaud-denis-remillard-25b3a8296/",
+  },
+  {
+    name: "Jaydan Aladro Hawe",
+    linkedin: "https://www.linkedin.com/in/jaydanaladro/",
   },
 ];
 
@@ -70,9 +75,35 @@ const TeamPage: React.FC = () => {
                       <Linkedin size={20} />
                     </a>
                   </div>
-                  {member.noteKey && (
-                    <p className="text-seth-coral/60 italic mt-1">({t(member.noteKey)})</p>
-                  )}
+                </div>
+              </li>
+            ))}
+          </ul>
+
+          {/* Advisors Section */}
+          <h2 className="text-3xl font-bold mt-16 mb-4 text-seth-coral">{t("advisorsTitle")}</h2>
+          <p className="text-lg text-seth-coral/80 mb-8">{t("advisorsSubtitle")}</p>
+
+          <ul className="space-y-6">
+            {advisors.map((advisor) => (
+              <li
+                key={advisor.name}
+                className="flex items-start gap-3 text-seth-coral"
+              >
+                <span className="text-2xl">•</span>
+                <div className="flex-1">
+                  <div className="flex items-center gap-3 flex-wrap">
+                    <span className="text-xl font-semibold">{advisor.name}</span>
+                    <a
+                      href={advisor.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1 text-seth-coral hover:text-seth-coral/70 transition-colors"
+                      aria-label={`${advisor.name}'s LinkedIn`}
+                    >
+                      <Linkedin size={20} />
+                    </a>
+                  </div>
                 </div>
               </li>
             ))}

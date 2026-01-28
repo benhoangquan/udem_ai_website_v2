@@ -52,8 +52,8 @@
     "vicePresident": "Vice-Président",
     "vpLogistics": "VP - Logistique",
     "vpExternalComms": "VP - Communications Externes",
-    "awayOnQuest": "Actuellement en quête",
-    "inCharge": "Actuellement en charge du club"
+    "advisorsTitle": "Conseillers",
+    "advisorsSubtitle": "Orientation et mentorat"
   },
   "social": {
     "email": "COURRIEL",
