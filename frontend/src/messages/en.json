@@ -6,7 +6,8 @@
     "resources": "Resources",
     "projects": "Projects",
     "about": "About",
-    "blog": "Blog"
+    "blog": "Blog",
+    "presentations": "Presentations"
   },
   "hero": {
     "greeting": "Artificial Intelligence Club of",
@@ -106,5 +107,10 @@
     "location": "Check out Discord",
     "noEvents": "No events scheduled for this day.",
     "allEvents": "All Upcoming"
+  },
+  "presentations": {
+    "title": "Presentations",
+    "description": "Download slides from our weekly workshops and events.",
+    "noPresentations": "No presentations available for this semester yet."
   }
 }

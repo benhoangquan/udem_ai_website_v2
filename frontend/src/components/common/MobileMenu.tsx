@@ -23,6 +23,7 @@ const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
     { href: `/${locale}/about`, label: t("about") },
     { href: `/${locale}/team`, label: t("team") },
     { href: `/${locale}/projects`, label: t("projects") },
+    { href: `/${locale}#presentations`, label: t("presentations") },
     { href: `/${locale}#resources`, label: t("resources") },
   ];
 

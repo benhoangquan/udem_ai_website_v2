@@ -1,8 +1,11 @@
 import React from "react";
 import HeroSection from "@/components/main/HeroSection";
+import Head from "next/head";
 import ContactSection from "@/components/main/ContactSection";
 import ProjectsSection from "@/components/main/ProjectsSection";
 import ReadingSection from "@/components/main/ReadingSection";
+import EducationSection from "@/components/main/ReadingSection"; // Renaming might be confusing, checking imports
+import PresentationsSection from "@/components/main/PresentationsSection";
 import EventsCalendar from "@/components/main/EventsCalendar";
 
 import { getActivities } from "@/services/activityService";
@@ -17,12 +20,28 @@ interface HomeProps {
 export default function Home({ activities }: HomeProps) {
   return (
     <main className="bg-cream">
+      <Head>
+        <title>UdeM Artificial Intelligence Community</title>
+        <meta
+          name="description"
+          content="The Artificial Intelligence Community of the University of Montreal."
+        />
+        <meta
+          property="og:title"
+          content="UdeM Artificial Intelligence Community"
+        />
+        <meta
+          property="og:description"
+          content="The Artificial Intelligence Community of the University of Montreal."
+        />
+      </Head>
       <HeroSection />
       <EventsCalendar />
       <ProjectsSection />
       {/* <div id="activities">
         <ActivitiesSection activities={activities} />
       </div> */}
+      <PresentationsSection />
       <ReadingSection />
       <ContactSection />
     </main>

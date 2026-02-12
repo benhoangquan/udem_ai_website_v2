@@ -6,7 +6,8 @@
     "resources": "Ressources",
     "projects": "Projets",
     "about": "À propos",
-    "blog": "Blogue"
+    "blog": "Blogue",
+    "presentations": "Présentations"
   },
   "hero": {
     "greeting": "Club Intelligence Artificielle de",
@@ -106,5 +107,10 @@
     "location": "Consultez Discord",
     "noEvents": "Aucun événement prévu pour ce jour.",
     "allEvents": "Tous les événements à venir"
+  },
+  "presentations": {
+    "title": "Présentations",
+    "description": "Téléchargez les diapositives de nos ateliers et événements hebdomadaires.",
+    "noPresentations": "Aucune présentation disponible pour ce semestre pour le moment."
   }
 }
