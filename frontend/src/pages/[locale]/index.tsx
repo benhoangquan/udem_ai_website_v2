@@ -21,18 +21,19 @@ export default function Home({ activities }: HomeProps) {
   return (
     <main className="bg-cream">
       <Head>
-        <title>UdeM Artificial Intelligence Community</title>
+        <title>UdeM AI Club</title>
         <meta
           name="description"
           content="The Artificial Intelligence Community of the University of Montreal."
         />
-        <meta
-          property="og:title"
-          content="UdeM Artificial Intelligence Community"
-        />
+        <meta property="og:title" content="UdeM AI Club" />
         <meta
           property="og:description"
           content="The Artificial Intelligence Community of the University of Montreal."
+        />
+        <meta
+          name="keywords"
+          content="UdeM, AI, Artificial Intelligence, Club, University of Montreal, Machine Learning, Deep Learning, Student Community, Montreal, Technology, Workshops, Events"
         />
       </Head>
       <HeroSection />

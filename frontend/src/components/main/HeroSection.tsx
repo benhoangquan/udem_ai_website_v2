@@ -63,10 +63,11 @@ const HeroSection: React.FC = () => {
             {carouselImages.map((image, index) => (
               <div
                 key={index}
-                className={`absolute inset-0 transition-opacity duration-1000 ${index === currentImageIndex
+                className={`absolute inset-0 transition-opacity duration-1000 ${
+                  index === currentImageIndex
                     ? "opacity-100 z-10"
                     : "opacity-0 z-0"
-                  }`}
+                }`}
               >
                 <Image
                   src={image.src}

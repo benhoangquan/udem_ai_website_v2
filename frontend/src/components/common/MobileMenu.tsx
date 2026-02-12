@@ -39,8 +39,9 @@ const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className={`fixed inset-0 bg-seth-coral z-50 flex items-center justify-center transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-        }`}
+      className={`fixed inset-0 bg-seth-coral z-50 flex items-center justify-center transition-opacity duration-300 ${
+        isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+      }`}
       role="dialog"
       aria-modal="true"
       aria-hidden={!isOpen}
