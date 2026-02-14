@@ -5,7 +5,7 @@ import ContactSection from "@/components/main/ContactSection";
 import ProjectsSection from "@/components/main/ProjectsSection";
 import ReadingSection from "@/components/main/ReadingSection";
 import EducationSection from "@/components/main/ReadingSection"; // Renaming might be confusing, checking imports
-import PresentationsSection from "@/components/main/PresentationsSection";
+
 import EventsCalendar from "@/components/main/EventsCalendar";
 
 import { getActivities } from "@/services/activityService";
@@ -42,7 +42,7 @@ export default function Home({ activities }: HomeProps) {
       {/* <div id="activities">
         <ActivitiesSection activities={activities} />
       </div> */}
-      <PresentationsSection />
+
       <ReadingSection />
       <ContactSection />
     </main>

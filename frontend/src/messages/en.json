@@ -80,12 +80,16 @@
     "clickHere": "Click here if you are not redirected automatically",
     "title": "Weekly Material / Resources",
     "paperTitle": "Paper of the Week",
-    "paperName": "A Few Useful Things to Know About Machine Learning",
-    "authors": "Pedro Domingos (2012)",
+    "paperName": "The Universal Weight Subspace Hypothesis",
+    "authors": "Gao et al. (2025)",
     "readMore": "Read More",
     "archiveTitle": "Previous Papers",
-    "paper1Title": "Attention Is All You Need",
-    "paper1Authors": "Vaswani et al. (2017)"
+    "paper1Title": "A Reduction of Imitation Learning (DAgger)",
+    "paper1Authors": "Ross et al. (2011)",
+    "paper2Title": "A Few Useful Things to Know About Machine Learning",
+    "paper2Authors": "Pedro Domingos (2012)",
+    "paper3Title": "Attention Is All You Need",
+    "paper3Authors": "Vaswani et al. (2017)"
   },
   "projects": {
     "title": "Projects",

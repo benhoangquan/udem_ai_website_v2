@@ -23,7 +23,7 @@ const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
     { href: `/${locale}/about`, label: t("about") },
     { href: `/${locale}/team`, label: t("team") },
     { href: `/${locale}/projects`, label: t("projects") },
-    { href: `/${locale}#presentations`, label: t("presentations") },
+    { href: `/${locale}/presentations`, label: t("presentations") },
     { href: `/${locale}#resources`, label: t("resources") },
   ];
 
@@ -39,9 +39,8 @@ const MobileMenu: React.FC<Props> = ({ isOpen, onClose }) => {
 
   return (
     <div
-      className={`fixed inset-0 bg-seth-coral z-50 flex items-center justify-center transition-opacity duration-300 ${
-        isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
-      }`}
+      className={`fixed inset-0 bg-seth-coral z-50 flex items-center justify-center transition-opacity duration-300 ${isOpen ? "opacity-100" : "opacity-0 pointer-events-none"
+        }`}
       role="dialog"
       aria-modal="true"
       aria-hidden={!isOpen}

@@ -9,6 +9,16 @@ const ReadingSection: React.FC = () => {
     {
       title: t("paper1Title"),
       authors: t("paper1Authors"),
+      link: "https://arxiv.org/abs/1011.0686",
+    },
+    {
+      title: t("paper2Title"),
+      authors: t("paper2Authors"),
+      link: "https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf",
+    },
+    {
+      title: t("paper3Title"),
+      authors: t("paper3Authors"),
       link: "https://arxiv.org/abs/1706.03762",
     },
   ];
@@ -21,13 +31,13 @@ const ReadingSection: React.FC = () => {
         {/* Current Paper */}
         <div className="bg-white p-8 rounded-lg shadow-md mb-8">
           <span className="bg-seth-coral/10 text-seth-coral px-3 py-1 rounded-full text-sm font-bold mb-4 inline-block">
-            2026-01-19
+            2026-02-14
           </span>
           <h3 className="text-2xl font-semibold mb-2">{t("paperTitle")}</h3>
           <p className="text-lg mb-4 font-bold">{t("paperName")}</p>
           <p className="italic text-gray-600 mb-6">{t("authors")}</p>
           <a
-            href="https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf"
+            href="https://arxiv.org/abs/2512.05117"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block bg-seth-coral text-white py-2 px-6 rounded hover:bg-seth-coral/90 transition-colors"
