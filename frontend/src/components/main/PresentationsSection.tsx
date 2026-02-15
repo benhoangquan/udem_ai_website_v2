@@ -20,11 +20,8 @@ const PresentationsSection: React.FC = () => {
     {
       semester: "Winter 2026",
       items: [
-        { title: "Intro to AI", link: "/presentations/w25/intro.pdf" },
-        {
-          title: "Neural Networks Basics",
-          link: "/presentations/w25/nn_basics.pdf",
-        },
+        { title: "Week 1", link: "/presentations/w26/lecture1.pdf" },
+        { title: "Week 2", link: "/presentations/w26/lecture2.pdf" },
       ],
     },
 
