@@ -54,6 +54,7 @@
     "vpLogistics": "VP - Logistics",
     "vpExternalComms": "VP - External Communications",
     "vpResearch": "VP - Research (Paper Distillation)",
+    "projectCoordinator": "Project Coordinator",
     "advisorsTitle": "Advisors",
     "advisorsSubtitle": "Guidance and mentorship"
   },
@@ -115,6 +116,9 @@
   "presentations": {
     "title": "Presentations",
     "description": "Download slides from our weekly workshops and events.",
-    "noPresentations": "No presentations available for this semester yet."
+    "noPresentations": "No presentations available for this semester yet.",
+    "open": "Open",
+    "viewing": "Viewing",
+    "selectPresentation": "Select a presentation to view"
   }
 }

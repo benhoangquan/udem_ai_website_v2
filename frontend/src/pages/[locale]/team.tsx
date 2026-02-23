@@ -29,6 +29,11 @@ const teamMembers = [
     roleKey: "vpResearch",
     linkedin: "https://www.linkedin.com/in/alexandre-tancr%C3%A8de/",
   },
+  {
+    name: "Maryam Bani-Otero",
+    roleKey: "projectCoordinator",
+    linkedin: "https://www.linkedin.com/in/maryam-bani-otero/",
+  },
 ];
 
 // Advisors data

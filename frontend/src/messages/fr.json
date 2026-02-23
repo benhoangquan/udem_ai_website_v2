@@ -54,6 +54,7 @@
     "vpLogistics": "VP - Logistique",
     "vpExternalComms": "VP - Communications Externes",
     "vpResearch": "VP - Recherche (Distillation de Papiers)",
+    "projectCoordinator": "Coordonnatrice de projet",
     "advisorsTitle": "Conseillers",
     "advisorsSubtitle": "Orientation et mentorat"
   },
@@ -115,6 +116,9 @@
   "presentations": {
     "title": "Présentations",
     "description": "Téléchargez les diapositives de nos ateliers et événements hebdomadaires.",
-    "noPresentations": "Aucune présentation disponible pour ce semestre pour le moment."
+    "noPresentations": "Aucune présentation disponible pour ce semestre pour le moment.",
+    "open": "Ouvrir",
+    "viewing": "En cours",
+    "selectPresentation": "Sélectionnez une présentation à visualiser"
   }
 }
