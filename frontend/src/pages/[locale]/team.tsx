@@ -33,6 +33,7 @@ const teamMembers = [
     name: "Maryam Bani-Otero",
     roleKey: "projectCoordinator",
     linkedin: "https://www.linkedin.com/in/maryam-bani-otero/",
+    github: "https://github.com/maryambani",
   },
 ];
 
